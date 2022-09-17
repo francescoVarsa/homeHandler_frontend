@@ -15,6 +15,7 @@ export type Theme = {
       lightPurple: string;
       megaLightPurple: string;
       ultraLightPurple: string;
+      white: string;
     };
     titleSize: {
       xxl: string;
@@ -47,6 +48,7 @@ const themes = {
       lightPurple: "#9D4EDD",
       megaLightPurple: "#C77DFF",
       ultraLightPurple: "#E0AAFF",
+      white: "#FFF",
     },
     titleSize: {
       xxl: "84px",
@@ -75,6 +77,7 @@ const themes = {
       lightPurple: "#9D4EDD",
       megaLightPurple: "#C77DFF",
       ultraLightPurple: "#E0AAFF",
+      white: "#FFF",
     },
     titleSize: {
       xxl: "84px",

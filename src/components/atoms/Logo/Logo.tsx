@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { Theme, ThemeContext } from "../context/ThemeContext";
+import { Theme, ThemeContext } from "../../context/ThemeContext";
 
 type LogoProps = {
   height?: number;
