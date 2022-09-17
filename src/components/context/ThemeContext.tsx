@@ -4,7 +4,7 @@ type ThemeContextWrapperProps = {
   children: JSX.Element | JSX.Element[];
 };
 
-type Theme = {
+export type Theme = {
   theme: {
     colors: {
       dark: string;
