@@ -4,10 +4,13 @@ import ControlPanelIllustration from "../atoms/Illustrations/ControlPanelIllustr
 import Logo from "../atoms/Logo/Logo";
 import Paragraph from "../atoms/Paragraph/Paragraph";
 import Title from "../atoms/Title/Title";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
 export default function LandingPageTemplate({}: Props) {
+  const { t } = useTranslation();
+
   return (
     <Grid
       container
@@ -20,22 +23,11 @@ export default function LandingPageTemplate({}: Props) {
       <Grid xs={4}>
         <div>
           <Logo color="purple" width={450} height={100} />
-          <Title
-            tag={2}
-            text={
-              "La gestione del proprio tempo non è sempre semplice tra lavoro, doveri quotidiani, sport ecc."
-            }
-          />
+          <Title tag={2} text={t("landingPage:title")} />
 
-          <Paragraph
-            size="xxl"
-            text="SmartyRoutine permette di creare, monitorare ed organizzare la
-            propria routine mettendo a disposizione una serie di funzionalità
-            che hanno lo scopo di agevolare e migliorare la gestione del proprio
-            tempo."
-          ></Paragraph>
+          <Paragraph size="xxl" text={t("landingPage:description")}></Paragraph>
 
-          <Button variant="outlined">Inizia subito</Button>
+          <Button variant="outlined">{t("landingPage:start_button")}</Button>
         </div>
       </Grid>
       <Grid xs={6}>
