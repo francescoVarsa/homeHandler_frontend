@@ -1,10 +1,9 @@
-import { useContext, useMemo } from "react";
-import { Theme, ThemeContext } from "../../context/ThemeContext";
-import styles from "./Title.module.scss";
+import { useTheme } from "@mui/material";
+import { Colors } from "../../../types/types";
 
 type TitleProps = {
-  size?: keyof Theme["theme"]["titleSize"];
-  color?: keyof Theme["theme"]["colors"];
+  size?: string;
+  color?: Colors;
   tag: 1 | 2 | 3 | 4 | 5 | 6;
   text: string;
 };
@@ -15,17 +14,15 @@ export default function Title({
   tag,
   text,
 }: TitleProps) {
-  const ctx = useContext(ThemeContext);
-  const theme = useMemo(() => ctx?.theme, [ctx?.theme]);
+  const theme = useTheme();
 
   switch (tag) {
     case 1:
       return (
         <h1
-          className={styles["title"]}
           style={{
-            color: theme?.colors[color],
-            fontSize: theme?.titleSize[size],
+            color: theme.palette[color].main,
+            fontSize: "16px",
           }}
         >
           {text}
@@ -35,10 +32,9 @@ export default function Title({
     case 2:
       return (
         <h2
-          className={styles["title"]}
           style={{
-            color: theme?.colors[color],
-            fontSize: theme?.titleSize[size],
+            color: theme.palette[color].main,
+            fontSize: "16px",
           }}
         >
           {text}
@@ -48,10 +44,9 @@ export default function Title({
     case 3:
       return (
         <h3
-          className={styles["title"]}
           style={{
-            color: theme?.colors[color],
-            fontSize: theme?.titleSize[size],
+            color: theme.palette[color].main,
+            fontSize: "16px",
           }}
         >
           {text}
@@ -61,10 +56,9 @@ export default function Title({
     case 4:
       return (
         <h4
-          className={styles["title"]}
           style={{
-            color: theme?.colors[color],
-            fontSize: theme?.titleSize[size],
+            color: theme.palette[color].main,
+            fontSize: "16px",
           }}
         >
           {text}
@@ -74,10 +68,9 @@ export default function Title({
     case 5:
       return (
         <h5
-          className={styles["title"]}
           style={{
-            color: theme?.colors[color],
-            fontSize: theme?.titleSize[size],
+            color: theme.palette[color].main,
+            fontSize: "16px",
           }}
         >
           {text}
@@ -87,10 +80,9 @@ export default function Title({
     case 6:
       return (
         <h6
-          className={styles["title"]}
           style={{
-            color: theme?.colors[color],
-            fontSize: theme?.titleSize[size],
+            color: theme.palette[color].main,
+            fontSize: "16px",
           }}
         >
           {text}

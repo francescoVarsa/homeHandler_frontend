@@ -1,9 +1,9 @@
-import { useContext, useMemo } from "react";
-import { Theme, ThemeContext } from "../../context/ThemeContext";
+import { useTheme } from "@mui/material";
+import { Colors } from "../../../types/types";
 
 type ParagraphProps = {
-  size?: keyof Theme["theme"]["titleSize"];
-  color?: keyof Theme["theme"]["colors"];
+  size?: string;
+  color?: Colors;
   text: string;
 };
 
@@ -12,14 +12,12 @@ export default function Paragraph({
   color = "white",
   text,
 }: ParagraphProps) {
-  const ctx = useContext(ThemeContext);
-  const theme = useMemo(() => ctx?.theme, [ctx?.theme]);
-
+  const theme = useTheme();
   return (
     <p
       style={{
-        fontSize: theme?.["textSize"][size],
-        color: theme?.["colors"][color],
+        fontSize: "16px",
+        color: theme.palette[color].main,
       }}
     >
       {text}

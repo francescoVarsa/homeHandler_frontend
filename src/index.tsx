@@ -3,17 +3,18 @@ import ReactDOM from "react-dom/client";
 import "./styles/index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ThemeContextWrapper } from "./components/context/ThemeContext";
 import "./i18n";
+import { theme } from "./theme/themeConfig";
+import { ThemeProvider } from "@mui/material/styles";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <ThemeContextWrapper>
+    <ThemeProvider theme={theme}>
       <App />
-    </ThemeContextWrapper>
+    </ThemeProvider>
   </React.StrictMode>
 );
 
