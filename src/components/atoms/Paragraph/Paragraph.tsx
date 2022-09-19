@@ -1,8 +1,8 @@
 import { useTheme } from "@mui/material";
-import { Colors } from "../../../types/types";
+import { Colors, TextSizeOptions } from "../../../types/types";
 
 type ParagraphProps = {
-  size?: string;
+  size?: TextSizeOptions;
   color?: Colors;
   text: string;
 };
@@ -15,8 +15,8 @@ export default function Paragraph({
   const theme = useTheme();
   return (
     <p
+      className={`text-${size}`}
       style={{
-        fontSize: "16px",
         color: theme.palette[color].main,
       }}
     >

@@ -26,12 +26,12 @@ export default function LandingPageTemplate({}: Props) {
           <Title
             tag={2}
             text={t("landingPage:title")}
-            size={"s"}
+            size={"m"}
             color={"lightPurple"}
           />
 
           <Paragraph
-            size="xxl"
+            size="l"
             text={t("landingPage:description")}
             color={"white"}
           ></Paragraph>

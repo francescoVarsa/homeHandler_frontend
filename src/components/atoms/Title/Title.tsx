@@ -1,8 +1,8 @@
 import { useTheme } from "@mui/material";
-import { Colors } from "../../../types/types";
+import { Colors, TextSizeOptions } from "../../../types/types";
 
 type TitleProps = {
-  size?: string;
+  size?: TextSizeOptions;
   color?: Colors;
   tag: 1 | 2 | 3 | 4 | 5 | 6;
   text: string;
@@ -20,9 +20,9 @@ export default function Title({
     case 1:
       return (
         <h1
+          className={`title-${size}`}
           style={{
             color: theme.palette[color].main,
-            fontSize: "16px",
           }}
         >
           {text}
@@ -32,9 +32,9 @@ export default function Title({
     case 2:
       return (
         <h2
+          className={`title-${size}`}
           style={{
             color: theme.palette[color].main,
-            fontSize: "16px",
           }}
         >
           {text}
@@ -44,9 +44,9 @@ export default function Title({
     case 3:
       return (
         <h3
+          className={`title-${size}`}
           style={{
             color: theme.palette[color].main,
-            fontSize: "16px",
           }}
         >
           {text}
@@ -56,9 +56,9 @@ export default function Title({
     case 4:
       return (
         <h4
+          className={`title-${size}`}
           style={{
             color: theme.palette[color].main,
-            fontSize: "16px",
           }}
         >
           {text}
@@ -68,9 +68,9 @@ export default function Title({
     case 5:
       return (
         <h5
+          className={`title-${size}`}
           style={{
             color: theme.palette[color].main,
-            fontSize: "16px",
           }}
         >
           {text}
@@ -80,9 +80,9 @@ export default function Title({
     case 6:
       return (
         <h6
+          className={`title-${size}`}
           style={{
             color: theme.palette[color].main,
-            fontSize: "16px",
           }}
         >
           {text}

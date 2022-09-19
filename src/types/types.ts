@@ -8,3 +8,5 @@ export type Colors =
 "megaLightPurple" |
 "ultraLightPurple" |
 "white"
+
+export type TextSizeOptions = "xxl" | "xl" | "l" | "m" | "s" | "xs"
