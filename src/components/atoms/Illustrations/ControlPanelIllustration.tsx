@@ -1,14 +1,15 @@
-import React from "react";
+type Props = { width?: string; height?: string };
 
-type Props = {};
-
-export default function ControlPanelIllustration({}: Props) {
+export default function ControlPanelIllustration({
+  width = "751",
+  height = "558",
+}: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 1"
-      width="751.15479"
-      height="558.14695"
+      width={width}
+      height={height}
       viewBox="0 0 751.15479 558.14695"
     >
       <path
