@@ -1,4 +1,4 @@
-import Grid from "@mui/system/Unstable_Grid";
+import Grid from "@mui/material/Grid";
 import { useTranslation } from "react-i18next";
 import Button from "../atoms/Button/Button";
 import Logo from "../atoms/Logo/Logo";
@@ -8,17 +8,17 @@ import Title from "../atoms/Title/Title";
 export default function LandingPageCallToAction() {
   const { t } = useTranslation();
   return (
-    <Grid container>
-      <Grid md={12}>
-        <Logo width={450} height={100} color={"purple"} />
+    <Grid container rowSpacing={6}>
+      <Grid item md={12}>
+        <Logo color={"purple"} />
       </Grid>
-      <Grid md={12}>
-        <Title tag={"h3"} text={t("landingPage:title")} color={"lightPurple"} />
+      <Grid item md={12}>
+        <Title tag={"h4"} text={t("landingPage:title")} color={"purple"} />
       </Grid>
-      <Grid md={12}>
+      <Grid item md={12}>
         <Paragraph text={t("landingPage:description")} color={"white"} />
       </Grid>
-      <Grid md={12}>
+      <Grid item md={12}>
         <Button
           onClick={() => {}}
           type="outlined"

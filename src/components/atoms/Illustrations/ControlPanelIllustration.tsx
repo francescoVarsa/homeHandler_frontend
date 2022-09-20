@@ -1,15 +1,12 @@
 type Props = { width?: string; height?: string };
 
-export default function ControlPanelIllustration({
-  width = "751",
-  height = "558",
-}: Props) {
+export default function ControlPanelIllustration({ width, height }: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 1"
-      width={width}
-      height={height}
+      width={width ?? "100%"}
+      height={height ?? "100%"}
       viewBox="0 0 751.15479 558.14695"
     >
       <path

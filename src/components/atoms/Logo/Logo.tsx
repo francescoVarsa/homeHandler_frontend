@@ -7,18 +7,14 @@ type LogoProps = {
   color?: Colors;
 };
 
-export default function Logo({
-  height = 349,
-  width = 68,
-  color = "white",
-}: LogoProps) {
+export default function Logo({ height, width, color = "white" }: LogoProps) {
   const theme = useTheme();
 
   return (
     <svg
-      width={`${width}`}
-      height={`${height}`}
-      viewBox="0 0 349.77490996811065 68.61526934811769"
+      width={`${width ?? "100%"}`}
+      height={`${height ?? "100%"}`}
+      viewBox="0 0 349 68"
       className="css-1j8o68f"
     >
       <defs id="SvgjsDefs2604"></defs>
