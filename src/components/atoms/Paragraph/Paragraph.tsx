@@ -1,26 +1,16 @@
-import { useTheme } from "@mui/material";
-import { Colors, TextSizeOptions } from "../../../types/types";
+import { Typography, useTheme } from "@mui/material";
+import { Colors } from "../../../types/types";
 
 type ParagraphProps = {
-  size?: TextSizeOptions;
   color?: Colors;
   text: string;
 };
 
-export default function Paragraph({
-  size = "m",
-  color = "white",
-  text,
-}: ParagraphProps) {
+export default function Paragraph({ color = "white", text }: ParagraphProps) {
   const theme = useTheme();
   return (
-    <p
-      className={`text-${size}`}
-      style={{
-        color: theme.palette[color].main,
-      }}
-    >
+    <Typography variant="body1" color={theme.palette[color].main}>
       {text}
-    </p>
+    </Typography>
   );
 }

@@ -1,5 +1,12 @@
-import { createTheme } from '@mui/material/styles';
-
+import { createTheme, responsiveFontSizes, ThemeOptions } from '@mui/material/styles';
+// import UbuntuBold from  "./../static/fonts/Ubuntu/Ubuntu-Bold.ttf";
+// import UbuntuBoldItalic from "./../static/fonts/Ubuntu/Ubuntu-BoldItalic.ttf";
+// import UbuntuItalic from "./../static/fonts/Ubuntu/Ubuntu-Italic.ttf";
+// import UbuntuLight from "./../static/fonts/Ubuntu/Ubuntu-Light.ttf";
+// import UbuntuLightItalic from "./../static/fonts/Ubuntu/Ubuntu-LightItalic.ttf";
+// import UbuntuMedium from "./../static/fonts/Ubuntu/Ubuntu-Medium.ttf";
+// import UbuntuMediumItalic from "./../static/fonts/Ubuntu/Ubuntu-MediumItalic.ttf";
+// import UbuntuRegular from "./../static/fonts/Ubuntu/Ubuntu-Regular.ttf";
 declare module '@mui/material/styles' {
     interface Theme {
         status: {
@@ -50,42 +57,65 @@ declare module '@mui/material/styles' {
       white: true;
     }
   }
-  
 
-export const theme = createTheme({
-  status: {
-    danger: '#e53e3e',
-  },
-  palette: {
-    white: {
-        main: "#FFF"
+  const configTheme: ThemeOptions = {
+    status: {
+      danger: '#e53e3e',
     },
-    darkBlue: {
-        main: "#10002B",
+    palette: {
+      white: {
+          main: "#FFF"
+      },
+      darkBlue: {
+          main: "#10002B",
+      },
+      darkViolet: {
+          main: "#240046"
+      },
+      darkPurple: {
+          main:  "#3C096C"
+      },
+      strongPurple: {
+          main: "#5A189A"
+      },
+      purple: {
+          main: "#7B2CBF"
+      },
+      lightPurple: {
+          main: "#9D4EDD"
+      },
+      megaLightPurple: {
+          main: "#C77DFF"
+      },
+      ultraLightPurple: {
+          main: "#E0AAFF"
+      }
     },
-    darkViolet: {
-        main: "#240046"
+  
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536,
+      }
     },
-    darkPurple: {
-        main:  "#3C096C"
+
+    typography: {
+      fontFamily: 
+      [
+        "Ubuntu",
+      ].join()
     },
-    strongPurple: {
-        main: "#5A189A"
-    },
-    purple: {
-        main: "#7B2CBF"
-    },
-    lightPurple: {
-        main: "#9D4EDD"
-    },
-    megaLightPurple: {
-        main: "#C77DFF"
-    },
-    ultraLightPurple: {
-        main: "#E0AAFF"
-    }
-  },
-});
+  }
+  
+let theme = createTheme(configTheme);
+theme = responsiveFontSizes(theme)
+
+export default theme
+
+
 
 
 

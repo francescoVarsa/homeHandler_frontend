@@ -5,9 +5,7 @@ import Logo from "../atoms/Logo/Logo";
 import Paragraph from "../atoms/Paragraph/Paragraph";
 import Title from "../atoms/Title/Title";
 
-type LandingPageCallToActionProps = {};
-
-export default function LandingPageCallToAction({}: LandingPageCallToActionProps) {
+export default function LandingPageCallToAction() {
   const { t } = useTranslation();
   return (
     <Grid container>
@@ -15,19 +13,10 @@ export default function LandingPageCallToAction({}: LandingPageCallToActionProps
         <Logo width={450} height={100} color={"purple"} />
       </Grid>
       <Grid md={12}>
-        <Title
-          tag={2}
-          text={t("landingPage:title")}
-          size={"m"}
-          color={"lightPurple"}
-        />
+        <Title tag={"h3"} text={t("landingPage:title")} color={"lightPurple"} />
       </Grid>
       <Grid md={12}>
-        <Paragraph
-          size="l"
-          text={t("landingPage:description")}
-          color={"white"}
-        />
+        <Paragraph text={t("landingPage:description")} color={"white"} />
       </Grid>
       <Grid md={12}>
         <Button

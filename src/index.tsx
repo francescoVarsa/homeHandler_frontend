@@ -4,7 +4,7 @@ import "./styles/index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
-import { theme } from "./theme/themeConfig";
+import theme from "./theme/themeConfig";
 import { ThemeProvider } from "@mui/material/styles";
 
 const root = ReactDOM.createRoot(

@@ -15,10 +15,14 @@ export default function LandingPageTemplate() {
       <Grid md={4} xs={10}>
         <LandingPageCallToAction />
       </Grid>
-      <Grid md={6} xs={10}>
-        <div>
-          <ControlPanelIllustration />
-        </div>
+      <Grid
+        md={6}
+        xs={10}
+        container
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <ControlPanelIllustration />
       </Grid>
     </Grid>
   );
