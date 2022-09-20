@@ -6,11 +6,12 @@ import LandingPageCallToAction from "../molecules/LandingPageCallToAction";
 export default function LandingPageTemplate() {
   return (
     <Grid
+      flex={1}
       container
-      columnSpacing={10}
+      spacing={10}
       alignItems={"center"}
       justifyContent={"center"}
-      height={"100vh"}
+      // height={"100vh"}
     >
       <Grid item md={4} sm={8} xs={10}>
         <LandingPageCallToAction />
