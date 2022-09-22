@@ -3,13 +3,18 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import * as landingPageIT from "./translations/it/landingPage/landingPage-it.json"
 import * as landingPageEN from "./translations/en/landingPage/landingPage-en.json"
+import * as notFoundPageIT from "./translations/it/notFoundPage/notFoundPage-it.json"
+import * as notFoundPageEN from "./translations/en/notFoundPage/notFoundPage-en.json"
+
 
 const resources = {
   en: {
     landingPage: landingPageEN,
+    notFoundPage:  notFoundPageEN
   },
   it: {
-    landingPage: landingPageIT
+    landingPage: landingPageIT,
+    notFoundPage:  notFoundPageIT
   },
 };
 
