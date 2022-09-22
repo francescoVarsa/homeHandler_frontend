@@ -5,16 +5,19 @@ import * as landingPageIT from "./translations/it/landingPage/landingPage-it.jso
 import * as landingPageEN from "./translations/en/landingPage/landingPage-en.json"
 import * as notFoundPageIT from "./translations/it/notFoundPage/notFoundPage-it.json"
 import * as notFoundPageEN from "./translations/en/notFoundPage/notFoundPage-en.json"
-
+import * as authPagesIT from "./translations/it/AuthScreen/AuthScreen-it.json"
+import * as authPagesEN from "./translations/en/AuthScreen/AuthScreen-en.json"
 
 const resources = {
   en: {
     landingPage: landingPageEN,
-    notFoundPage:  notFoundPageEN
+    notFoundPage:  notFoundPageEN,
+    authPages: authPagesEN
   },
   it: {
     landingPage: landingPageIT,
-    notFoundPage:  notFoundPageIT
+    notFoundPage:  notFoundPageIT,
+    authPages: authPagesIT
   },
 };
 

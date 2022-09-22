@@ -1,9 +1,9 @@
 import Grid from "@mui/material/Grid";
 import { useTranslation } from "react-i18next";
-import Button from "../atoms/Button/Button";
-import Logo from "../atoms/Logo/Logo";
-import Paragraph from "../atoms/Paragraph/Paragraph";
-import Title from "../atoms/Title/Title";
+import Button from "../../atoms/Button/Button";
+import Logo from "../../atoms/Logo/Logo";
+import Paragraph from "../../atoms/Paragraph/Paragraph";
+import Title from "../../atoms/Title/Title";
 
 export default function LandingPageCallToAction() {
   const { t } = useTranslation();

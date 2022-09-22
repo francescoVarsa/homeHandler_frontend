@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import Background from "../atoms/Background";
+import Background from "../../atoms/backgrouds/Background/Background";
 
 type IllustrationWithTextProps = {
   textColumn: JSX.Element | JSX.Element[];

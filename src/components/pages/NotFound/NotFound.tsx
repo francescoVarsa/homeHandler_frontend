@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import NotFoundIllustration from "../../atoms/Illustrations/NotFoundIllustration";
 import Title from "../../atoms/Title/Title";
-import IllustrationWithText from "../../templates/IllustrationWithText";
+import IllustrationWithText from "../../templates/IllustrationWithText/IllustrationWithText";
 
 export default function NotFound() {
   const { t } = useTranslation();
