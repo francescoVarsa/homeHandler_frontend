@@ -1,12 +1,5 @@
 import { createTheme, responsiveFontSizes, ThemeOptions } from '@mui/material/styles';
-// import UbuntuBold from  "./../static/fonts/Ubuntu/Ubuntu-Bold.ttf";
-// import UbuntuBoldItalic from "./../static/fonts/Ubuntu/Ubuntu-BoldItalic.ttf";
-// import UbuntuItalic from "./../static/fonts/Ubuntu/Ubuntu-Italic.ttf";
-// import UbuntuLight from "./../static/fonts/Ubuntu/Ubuntu-Light.ttf";
-// import UbuntuLightItalic from "./../static/fonts/Ubuntu/Ubuntu-LightItalic.ttf";
-// import UbuntuMedium from "./../static/fonts/Ubuntu/Ubuntu-Medium.ttf";
-// import UbuntuMediumItalic from "./../static/fonts/Ubuntu/Ubuntu-MediumItalic.ttf";
-// import UbuntuRegular from "./../static/fonts/Ubuntu/Ubuntu-Regular.ttf";
+
 declare module '@mui/material/styles' {
     interface Theme {
         status: {
