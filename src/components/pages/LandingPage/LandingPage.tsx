@@ -1,16 +1,12 @@
-import { useTheme } from "@mui/material";
-import { Box } from "@mui/system";
-import LandingPageTemplate from "../../templates/LandingPageTemplate";
+import ControlPanelIllustration from "../../atoms/Illustrations/ControlPanelIllustration";
+import LandingPageCallToAction from "../../molecules/LandingPageCallToAction";
+import IllustrationWithText from "../../templates/IllustrationWithText";
 
 export default function LandingPage() {
-  const theme = useTheme();
   return (
-    <Box
-      minHeight={"100vh"}
-      display={"flex"}
-      sx={{ background: theme.palette.darkBlue.main }}
-    >
-      <LandingPageTemplate />
-    </Box>
+    <IllustrationWithText
+      illustration={<ControlPanelIllustration />}
+      textColumn={<LandingPageCallToAction />}
+    />
   );
 }
