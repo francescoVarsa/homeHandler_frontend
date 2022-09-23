@@ -16,7 +16,7 @@ export default function AuthFormTemplate({ children }: AuthFormTemplateProps) {
         justifyContent={"center"}
       >
         <Grid item md={6}>
-          <AuthIllustration />
+          <AuthIllustration color="lightPurple" />
           {children}
         </Grid>
       </Grid>

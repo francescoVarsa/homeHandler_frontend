@@ -13,7 +13,11 @@ export default function AuthForm({ formType }: AuthFormProps) {
   const { t } = useTranslation();
 
   return (
-    <BlurredBackground borderThickness={1} borderColor={"purple"}>
+    <BlurredBackground
+      borderThickness={1}
+      borderColor={"purple"}
+      rgbaColor={"rgb(16, 0, 43, 0.9)"}
+    >
       <Grid
         container
         display={"flex"}
