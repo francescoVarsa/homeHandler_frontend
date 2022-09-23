@@ -7,6 +7,7 @@ type BlurredBackgroundProps = {
   borderColor?: Colors;
   borderThickness?: number;
   children: JSX.Element | JSX.Element[];
+  widthPercentage?: number;
 };
 
 export default function BlurredBackground({
@@ -14,6 +15,7 @@ export default function BlurredBackground({
   borderColor = "purple",
   borderThickness = 1,
   children,
+  widthPercentage = 30,
 }: BlurredBackgroundProps) {
   const theme = useTheme();
   return (
@@ -23,7 +25,7 @@ export default function BlurredBackground({
       top={"50%"}
       left={"50%"}
       padding={"30px 50px"}
-      minWidth={"60%"}
+      width={`${widthPercentage}%`}
       className={styles["form-wrapper"]}
       borderRadius={5}
       border={`${borderThickness}px solid ${theme.palette[borderColor].main}`}

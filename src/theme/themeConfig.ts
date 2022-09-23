@@ -51,6 +51,20 @@ declare module '@mui/material/styles' {
     }
   }
 
+  declare module '@mui/material/TextField' {
+    interface TextFieldPropsColorOverrides {
+      darkBlue: true;
+      darkViolet: true;
+      darkPurple: true;
+      strongPurple: true;
+      purple: true;
+      lightPurple: true;
+      megalightPurple: true;
+      ultraLightPurple: true;
+      white: true;
+    }
+  }
+
   const configTheme: ThemeOptions = {
     status: {
       danger: '#e53e3e',

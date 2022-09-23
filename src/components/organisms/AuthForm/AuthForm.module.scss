@@ -1,0 +1,18 @@
+@import "./../../../styles/variables.scss";
+
+.form-input-wrapper{
+    background-color: $dark;
+    border-radius: 4px;
+
+    &__label {
+        color: $purple;
+    }
+
+    &__input {
+        color: $purple!important;
+
+        &::placeholder {
+            color: $purple!important;
+        }
+    }
+}

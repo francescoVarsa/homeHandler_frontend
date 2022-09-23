@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import Button from "../../atoms/Button/Button";
 import Title from "../../atoms/Title/Title";
+import styles from "./AuthForm.module.scss";
 
 type AuthFormProps = {
   formType: "signIn" | "login";
@@ -10,6 +11,7 @@ type AuthFormProps = {
 
 export default function AuthForm({ formType }: AuthFormProps) {
   const { t } = useTranslation();
+
   return (
     <BlurredBackground borderThickness={1} borderColor={"purple"}>
       <Grid
@@ -29,19 +31,41 @@ export default function AuthForm({ formType }: AuthFormProps) {
             }
           />
         </Grid>
-        <Grid container spacing={0} columnGap={4}>
-          <Grid item md={4}>
+        <Grid container spacing={2}>
+          <Grid item md={6} sm={12}>
             <TextField
               id="outlined-basic"
-              label="Outlined"
+              label="Email"
               variant="outlined"
+              size="small"
+              fullWidth
+              color="purple"
+              placeholder="Email"
+              className={styles["form-input-wrapper"]}
+              InputLabelProps={{
+                className: styles["form-input-wrapper__label"],
+              }}
+              InputProps={{
+                className: styles["form-input-wrapper__input"],
+              }}
             />
           </Grid>
-          <Grid item md={4}>
+          <Grid item md={6} sm={12}>
             <TextField
               id="outlined-basic"
-              label="Outlined"
+              label="Password"
               variant="outlined"
+              size="small"
+              fullWidth
+              color="purple"
+              placeholder="Password"
+              className={styles["form-input-wrapper"]}
+              InputLabelProps={{
+                className: styles["form-input-wrapper__label"],
+              }}
+              InputProps={{
+                className: styles["form-input-wrapper__input"],
+              }}
             />
           </Grid>
         </Grid>
