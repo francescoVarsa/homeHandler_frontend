@@ -1,9 +1,19 @@
-import { Grid, TextField } from "@mui/material";
+import {
+  FormControl,
+  Grid,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+} from "@mui/material";
 import { useTranslation } from "react-i18next";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import Button from "../../atoms/Button/Button";
 import Title from "../../atoms/Title/Title";
 import styles from "./AuthForm.module.scss";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useState } from "react";
 
 type AuthFormProps = {
   formType: "signIn" | "login";
@@ -11,6 +21,7 @@ type AuthFormProps = {
 
 export default function AuthForm({ formType }: AuthFormProps) {
   const { t } = useTranslation();
+  const [secureTxt, setSecureTxt] = useState(true);
 
   return (
     <BlurredBackground
@@ -38,7 +49,7 @@ export default function AuthForm({ formType }: AuthFormProps) {
         <Grid container spacing={2}>
           <Grid item md={6} sm={12}>
             <TextField
-              id="outlined-basic"
+              id="outlined-basic-email"
               label="Email"
               variant="outlined"
               size="small"
@@ -55,22 +66,42 @@ export default function AuthForm({ formType }: AuthFormProps) {
             />
           </Grid>
           <Grid item md={6} sm={12}>
-            <TextField
-              id="outlined-basic"
-              label="Password"
-              variant="outlined"
-              size="small"
-              fullWidth
-              color="purple"
-              placeholder="Password"
-              className={styles["form-input-wrapper"]}
-              InputLabelProps={{
-                className: styles["form-input-wrapper__label"],
-              }}
-              InputProps={{
-                className: styles["form-input-wrapper__input"],
-              }}
-            />
+            <FormControl color="purple">
+              <InputLabel
+                size="small"
+                htmlFor="outlined-basic-pwd"
+                className={styles["form-input-wrapper__label"]}
+              >
+                Password
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-basic-pwd"
+                label="Password"
+                size="small"
+                fullWidth
+                placeholder="Password"
+                type={secureTxt ? "password" : "text"}
+                className={styles["form-input-wrapper"]}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      edge="end"
+                      color="purple"
+                      onClick={() => setSecureTxt(!secureTxt)}
+                    >
+                      {secureTxt ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                // InputLabelProps={{
+                //   className: styles["form-input-wrapper__label"],
+                // }}
+                // InputProps={{
+                //   className: styles["form-input-wrapper__input"],
+                // }}
+              />
+            </FormControl>
           </Grid>
         </Grid>
         <Grid item md={12}>

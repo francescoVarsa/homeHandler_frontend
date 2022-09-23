@@ -51,6 +51,34 @@ declare module '@mui/material/styles' {
     }
   }
 
+  declare module '@mui/material/IconButton' {
+    interface IconButtonPropsColorOverrides {
+      darkBlue: true;
+      darkViolet: true;
+      darkPurple: true;
+      strongPurple: true;
+      purple: true;
+      lightPurple: true;
+      megalightPurple: true;
+      ultraLightPurple: true;
+      white: true;
+    }
+  }
+  declare module '@mui/material/FormControl' {
+    interface FormControlPropsColorOverrides {
+      darkBlue: true;
+      darkViolet: true;
+      darkPurple: true;
+      strongPurple: true;
+      purple: true;
+      lightPurple: true;
+      megalightPurple: true;
+      ultraLightPurple: true;
+      white: true;
+    }
+  }
+
+
   declare module '@mui/material/TextField' {
     interface TextFieldPropsColorOverrides {
       darkBlue: true;
