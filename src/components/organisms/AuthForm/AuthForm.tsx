@@ -12,8 +12,14 @@ export default function AuthForm({ formType }: AuthFormProps) {
   const { t } = useTranslation();
   return (
     <BlurredBackground borderThickness={1} borderColor={"purple"}>
-      <Grid container spacing={6}>
-        <Grid item md={12}>
+      <Grid
+        container
+        display={"flex"}
+        justifyContent={"center"}
+        spacing={0}
+        rowGap={4}
+      >
+        <Grid item md={12} sx={{ padding: "0px!important" }}>
           <Title
             tag={"h5"}
             text={
@@ -23,15 +29,15 @@ export default function AuthForm({ formType }: AuthFormProps) {
             }
           />
         </Grid>
-        <Grid item container md={12}>
-          <Grid sx={{ background: "red" }} item md={4}>
+        <Grid container spacing={0} columnGap={4}>
+          <Grid item md={4}>
             <TextField
               id="outlined-basic"
               label="Outlined"
               variant="outlined"
             />
           </Grid>
-          <Grid sx={{ background: "red" }} item md={4}>
+          <Grid item md={4}>
             <TextField
               id="outlined-basic"
               label="Outlined"
