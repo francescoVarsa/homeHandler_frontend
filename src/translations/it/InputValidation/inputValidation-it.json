@@ -1,0 +1,4 @@
+{
+  "required": "Questo campo è richiesto",
+  "email-wrong-pattern": "Perfavore inserisci un'email valida"
+}

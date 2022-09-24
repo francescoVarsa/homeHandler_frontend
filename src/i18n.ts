@@ -7,17 +7,21 @@ import * as notFoundPageIT from "./translations/it/notFoundPage/notFoundPage-it.
 import * as notFoundPageEN from "./translations/en/notFoundPage/notFoundPage-en.json"
 import * as authPagesIT from "./translations/it/AuthScreen/AuthScreen-it.json"
 import * as authPagesEN from "./translations/en/AuthScreen/AuthScreen-en.json"
+import * as inputValidationIT from "./translations/it/InputValidation/inputValidation-it.json"
+import * as inputValidationEN from "./translations/en/InputValidation/inputValidation-en.json"
 
 const resources = {
   en: {
     landingPage: landingPageEN,
     notFoundPage:  notFoundPageEN,
-    authPages: authPagesEN
+    authPages: authPagesEN,
+    inputValidation: inputValidationEN
   },
   it: {
     landingPage: landingPageIT,
     notFoundPage:  notFoundPageIT,
-    authPages: authPagesIT
+    authPages: authPagesIT,
+    inputValidation: inputValidationIT
   },
 };
 

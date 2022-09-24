@@ -1,3 +1,4 @@
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   FormControl,
   Grid,
@@ -7,21 +8,44 @@ import {
   OutlinedInput,
   TextField,
 } from "@mui/material";
+import { useState } from "react";
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import Button from "../../atoms/Button/Button";
 import Title from "../../atoms/Title/Title";
 import styles from "./AuthForm.module.scss";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useState } from "react";
 
 type AuthFormProps = {
   formType: "signIn" | "login";
 };
 
+type FormData = {
+  email: string;
+  pwd: string;
+};
+
 export default function AuthForm({ formType }: AuthFormProps) {
   const { t } = useTranslation();
   const [secureTxt, setSecureTxt] = useState(true);
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = (data: FieldValues) => console.log(data, errors);
 
   return (
     <BlurredBackground
@@ -30,6 +54,8 @@ export default function AuthForm({ formType }: AuthFormProps) {
       rgbaColor={"rgb(16, 0, 43, 0.9)"}
     >
       <Grid
+        component={"form"}
+        onSubmit={handleSubmit(onSubmit)}
         container
         display={"flex"}
         justifyContent={"center"}
@@ -48,24 +74,47 @@ export default function AuthForm({ formType }: AuthFormProps) {
         </Grid>
         <Grid container spacing={2}>
           <Grid item md={6} sm={12}>
-            <TextField
-              id="outlined-basic-email"
-              label="Email"
-              variant="outlined"
-              size="small"
-              fullWidth
-              color="purple"
-              placeholder="Email"
-              className={styles["form-input-wrapper"]}
-              InputLabelProps={{
-                className: styles["form-input-wrapper__label"],
+            <Controller
+              name="email"
+              rules={{
+                required: {
+                  value: true,
+                  message: t("inputValidation:required"),
+                },
+                pattern: {
+                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                  message: t("inputValidation:email-wrong-pattern"),
+                },
               }}
-              InputProps={{
-                className: styles["form-input-wrapper__input"],
+              control={control}
+              render={({ field, fieldState }) => {
+                return (
+                  <TextField
+                    id="outlined-basic-email"
+                    label="Email"
+                    variant="outlined"
+                    size="small"
+                    fullWidth
+                    color="purple"
+                    placeholder="Email"
+                    helperText={
+                      fieldState.error != null ? fieldState.error.message : ""
+                    }
+                    error={fieldState.error != null}
+                    className={styles["form-input-wrapper"]}
+                    InputLabelProps={{
+                      className: styles["form-input-wrapper__label"],
+                    }}
+                    InputProps={{
+                      className: styles["form-input-wrapper__input"],
+                    }}
+                    {...field}
+                  />
+                );
               }}
             />
           </Grid>
-          <Grid item md={6} sm={12}>
+          {/* <Grid item md={6} sm={12}>
             <FormControl color="purple">
               <InputLabel
                 size="small"
@@ -94,20 +143,15 @@ export default function AuthForm({ formType }: AuthFormProps) {
                     </IconButton>
                   </InputAdornment>
                 }
-                // InputLabelProps={{
-                //   className: styles["form-input-wrapper__label"],
-                // }}
-                // InputProps={{
-                //   className: styles["form-input-wrapper__input"],
-                // }}
+                {...register("pwd", { required: true, min: 3 })}
               />
             </FormControl>
-          </Grid>
+          </Grid> */}
         </Grid>
         <Grid item md={12}>
           <Button
-            onClick={() => {}}
-            type={"outlined"}
+            type={"submit"}
+            variant={"outlined"}
             size={"large"}
             color={"purple"}
             text={

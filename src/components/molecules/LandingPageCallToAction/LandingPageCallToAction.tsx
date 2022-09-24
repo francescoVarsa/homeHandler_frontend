@@ -21,7 +21,8 @@ export default function LandingPageCallToAction() {
       <Grid item md={12}>
         <Button
           onClick={() => {}}
-          type="outlined"
+          type="button"
+          variant="outlined"
           text={t("landingPage:start_button")}
           size={"large"}
         />
