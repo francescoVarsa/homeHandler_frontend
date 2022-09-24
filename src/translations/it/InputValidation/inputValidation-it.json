@@ -1,4 +1,5 @@
 {
   "required": "Questo campo è richiesto",
-  "email-wrong-pattern": "Perfavore inserisci un'email valida"
+  "email-wrong-pattern": "Perfavore inserisci un'email valida",
+  "password-wrong-pattern": "La password deve contenere almeno 8 caratteri"
 }

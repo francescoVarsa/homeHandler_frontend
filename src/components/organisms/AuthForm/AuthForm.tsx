@@ -1,6 +1,7 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   FormControl,
+  FormHelperText,
   Grid,
   IconButton,
   InputAdornment,
@@ -9,12 +10,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
-import {
-  Controller,
-  FieldValues,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { Controller, FieldValues, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import Button from "../../atoms/Button/Button";
@@ -25,27 +21,17 @@ type AuthFormProps = {
   formType: "signIn" | "login";
 };
 
-type FormData = {
-  email: string;
-  pwd: string;
-};
-
 export default function AuthForm({ formType }: AuthFormProps) {
   const { t } = useTranslation();
   const [secureTxt, setSecureTxt] = useState(true);
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm({
+  const { handleSubmit, control, formState } = useForm({
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = (data: FieldValues) => console.log(data, errors);
+  const onSubmit = (data: FieldValues) => console.log(data);
 
   return (
     <BlurredBackground
@@ -82,7 +68,7 @@ export default function AuthForm({ formType }: AuthFormProps) {
                   message: t("inputValidation:required"),
                 },
                 pattern: {
-                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                  value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
                   message: t("inputValidation:email-wrong-pattern"),
                 },
               }}
@@ -114,39 +100,66 @@ export default function AuthForm({ formType }: AuthFormProps) {
               }}
             />
           </Grid>
-          {/* <Grid item md={6} sm={12}>
-            <FormControl color="purple">
-              <InputLabel
-                size="small"
-                htmlFor="outlined-basic-pwd"
-                className={styles["form-input-wrapper__label"]}
-              >
-                Password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-basic-pwd"
-                label="Password"
-                size="small"
-                fullWidth
-                placeholder="Password"
-                type={secureTxt ? "password" : "text"}
-                className={styles["form-input-wrapper"]}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      edge="end"
-                      color="purple"
-                      onClick={() => setSecureTxt(!secureTxt)}
+          <Grid item md={6} sm={12}>
+            <Controller
+              name="password"
+              rules={{
+                required: {
+                  value: true,
+                  message: t("inputValidation:required"),
+                },
+                minLength: {
+                  value: 8,
+                  message: t("inputValidation:password-wrong-pattern"),
+                },
+              }}
+              control={control}
+              render={({ field, fieldState }) => {
+                return (
+                  <FormControl color="purple">
+                    <InputLabel
+                      size="small"
+                      htmlFor="outlined-basic-pwd"
+                      className={styles["form-input-wrapper__label"]}
                     >
-                      {secureTxt ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                {...register("pwd", { required: true, min: 3 })}
-              />
-            </FormControl>
-          </Grid> */}
+                      Password
+                    </InputLabel>
+                    <OutlinedInput
+                      {...field}
+                      id="outlined-basic-pwd"
+                      label="Password"
+                      size="small"
+                      fullWidth
+                      error={fieldState.error != null}
+                      placeholder="Password"
+                      type={secureTxt ? "password" : "text"}
+                      className={styles["pwd"]}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            edge="end"
+                            color="purple"
+                            onClick={() => setSecureTxt(!secureTxt)}
+                          >
+                            {secureTxt ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                    />
+                    {fieldState.error && (
+                      <FormHelperText
+                        error={fieldState.error != null}
+                        id="outlined-basic-pwd"
+                      >
+                        {fieldState.error.message}
+                      </FormHelperText>
+                    )}
+                  </FormControl>
+                );
+              }}
+            />
+          </Grid>
         </Grid>
         <Grid item md={12}>
           <Button

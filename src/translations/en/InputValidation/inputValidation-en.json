@@ -1,4 +1,5 @@
 {
   "required": "This field is required",
-  "email-wrong-pattern": "Please provide a valid email"
+  "email-wrong-pattern": "Please provide a valid email",
+  "password-wrong-pattern": "Password must contains at least 8 characters"
 }
