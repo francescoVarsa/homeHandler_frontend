@@ -34,9 +34,9 @@ export default function AuthForm({ formType }: AuthFormProps) {
 
   const [trigger] = authApi.endpoints.login.useMutation();
 
-  const onSubmit = async ({ username, password }: FieldValues) => {
+  const onSubmit = async ({ email, password }: FieldValues) => {
     const response = await trigger({
-      username,
+      username: email,
       password,
     });
 
