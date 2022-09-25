@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { authApi } from "../../../service/api/Auth";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import Button from "../../atoms/Button/Button";
 import Title from "../../atoms/Title/Title";
@@ -31,7 +32,16 @@ export default function AuthForm({ formType }: AuthFormProps) {
     },
   });
 
-  const onSubmit = (data: FieldValues) => console.log(data);
+  const [trigger] = authApi.endpoints.login.useMutation();
+
+  const onSubmit = async ({ username, password }: FieldValues) => {
+    const response = await trigger({
+      username,
+      password,
+    });
+
+    console.log(response);
+  };
 
   return (
     <BlurredBackground
