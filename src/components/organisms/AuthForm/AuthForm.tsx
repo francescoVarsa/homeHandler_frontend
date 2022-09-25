@@ -17,6 +17,7 @@ import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredB
 import Button from "../../atoms/Button/Button";
 import Title from "../../atoms/Title/Title";
 import styles from "./AuthForm.module.scss";
+import { useSelector } from "react-redux";
 
 type AuthFormProps = {
   formType: "signIn" | "login";
@@ -35,13 +36,14 @@ export default function AuthForm({ formType }: AuthFormProps) {
   const [trigger] = authApi.endpoints.login.useMutation();
 
   const onSubmit = async ({ email, password }: FieldValues) => {
-    const response = await trigger({
+    await trigger({
       username: email,
       password,
-    });
-
-    console.log(response);
+    }).unwrap();
   };
+
+  const token = useSelector((state: any) => state.user);
+  console.log(token);
 
   return (
     <BlurredBackground
