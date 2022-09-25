@@ -24,7 +24,7 @@ type AuthFormProps = {
 export default function AuthForm({ formType }: AuthFormProps) {
   const { t } = useTranslation();
   const [secureTxt, setSecureTxt] = useState(true);
-  const { handleSubmit, control, formState } = useForm({
+  const { handleSubmit, control } = useForm({
     defaultValues: {
       email: "",
       password: "",
