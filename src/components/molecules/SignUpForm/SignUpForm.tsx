@@ -13,13 +13,19 @@ import { useState } from "react";
 import { Control, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import Title from "../../atoms/Title/Title";
-import styles from "./../../organisms/AuthForm/AuthForm.module.scss";
+import styles from "../../organisms/AuthForm/AuthForm.module.scss";
 
-type SignInFormProps = {
-  control: Control<{ email: string; password: string }>;
+type SignUpFormProps = {
+  control: Control<{
+    name: string;
+    lastName: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }>;
 };
 
-export default function SignInForm({ control }: SignInFormProps) {
+export default function SignUpForm({ control }: SignUpFormProps) {
   const { t } = useTranslation();
   const [secureTxt, setSecureTxt] = useState(false);
   return (
@@ -28,17 +34,14 @@ export default function SignInForm({ control }: SignInFormProps) {
         <Title tag={"h5"} text={t("authPages:form-title-login")} />
       </Grid>
       <Grid container spacing={2}>
+        <Grid item md={6} sm={12}></Grid>
         <Grid item md={6} sm={12}>
           <Controller
-            name="email"
+            name="name"
             rules={{
               required: {
                 value: true,
                 message: t("inputValidation:required"),
-              },
-              pattern: {
-                value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-                message: t("inputValidation:email-wrong-pattern"),
               },
             }}
             control={control}
@@ -46,12 +49,12 @@ export default function SignInForm({ control }: SignInFormProps) {
               return (
                 <TextField
                   id="outlined-basic-email"
-                  label="Email"
+                  label="Name"
                   variant="outlined"
                   size="small"
                   fullWidth
                   color="purple"
-                  placeholder="Email"
+                  placeholder="Name"
                   helperText={
                     fieldState.error != null ? fieldState.error.message : ""
                   }
@@ -69,7 +72,7 @@ export default function SignInForm({ control }: SignInFormProps) {
             }}
           />
         </Grid>
-        <Grid item md={6} sm={12}>
+        {/*<Grid item md={6} sm={12}>
           <Controller
             name="password"
             rules={{
@@ -128,7 +131,7 @@ export default function SignInForm({ control }: SignInFormProps) {
               );
             }}
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </>
   );

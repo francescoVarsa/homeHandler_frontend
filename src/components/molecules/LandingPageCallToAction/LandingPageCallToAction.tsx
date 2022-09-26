@@ -1,5 +1,6 @@
 import Grid from "@mui/material/Grid";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import Button from "../../atoms/Button/Button";
 import Logo from "../../atoms/Logo/Logo";
 import Paragraph from "../../atoms/Paragraph/Paragraph";
@@ -7,6 +8,8 @@ import Title from "../../atoms/Title/Title";
 
 export default function LandingPageCallToAction() {
   const { t } = useTranslation();
+  const navigation = useNavigate();
+
   return (
     <Grid container rowSpacing={6}>
       <Grid item md={12}>
@@ -20,7 +23,7 @@ export default function LandingPageCallToAction() {
       </Grid>
       <Grid item md={12}>
         <Button
-          onClick={() => {}}
+          onClick={() => navigation("/login")}
           type="button"
           variant="outlined"
           text={t("landingPage:start_button")}
