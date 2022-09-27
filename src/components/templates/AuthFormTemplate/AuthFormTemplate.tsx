@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import Background from "../../atoms/backgrouds/Background/Background";
+import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import AuthIllustration from "../../atoms/Illustrations/AuthIllustration";
 
 type AuthFormTemplateProps = {
@@ -17,7 +18,13 @@ export default function AuthFormTemplate({ children }: AuthFormTemplateProps) {
       >
         <Grid item md={6}>
           <AuthIllustration color="lightPurple" />
-          {children}
+          <BlurredBackground
+            borderThickness={1}
+            borderColor={"purple"}
+            rgbaColor={"rgb(16, 0, 43, 0.9)"}
+          >
+            {children}
+          </BlurredBackground>
         </Grid>
       </Grid>
     </Background>
