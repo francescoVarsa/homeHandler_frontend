@@ -2,5 +2,7 @@
   "form-title-signIn": "Sign In",
   "form-title-login": "Login",
   "form-button-label-signIn": "Sign In",
-  "form-button-label-login": "Login"
+  "form-button-label-login": "Login",
+  "no-account-registered": "Don't have an account yet? Register",
+  "account-already-registered": "Already have an account? Login"
 }

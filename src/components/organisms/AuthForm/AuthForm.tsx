@@ -1,9 +1,12 @@
-import { Grid } from "@mui/material";
+import { Grid, useTheme } from "@mui/material";
 import { FormEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import Button from "../../atoms/Button/Button";
+import Paragraph from "../../atoms/Paragraph/Paragraph";
 import { SignInForm } from "../../molecules/SignInForm/SignInForm";
 import { SignUpForm } from "../../molecules/SignUpForm/SignUpForm";
+import styles from "./AuthForm.module.scss";
 
 type AuthFormProps = {
   formType: "signUp" | "login";
@@ -11,6 +14,8 @@ type AuthFormProps = {
 
 export default function AuthForm({ formType }: AuthFormProps) {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const linkColor = theme.palette["purple"].main;
 
   const loginFormRef = useRef<any>(null);
   const signUpFormRef = useRef<any>(null);
@@ -41,6 +46,21 @@ export default function AuthForm({ formType }: AuthFormProps) {
         <SignUpForm ref={signUpFormRef} />
       )}
 
+      <Grid item md={12}>
+        <Link
+          className={styles.link}
+          to={formType === "login" ? "/signUp" : "/login"}
+        >
+          <Paragraph
+            color={"purple"}
+            text={
+              formType === "login"
+                ? t("authPages:no-account-registered")
+                : t("authPages:account-already-registered")
+            }
+          />{" "}
+        </Link>
+      </Grid>
       <Grid item md={12}>
         <Button
           type={"submit"}

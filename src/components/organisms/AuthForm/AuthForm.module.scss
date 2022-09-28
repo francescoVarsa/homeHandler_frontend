@@ -62,3 +62,11 @@
     transition: background-color 5000s ease-in-out 0s;
   }
 }
+
+.link {
+  text-decoration: none;
+
+  &:hover > p {
+    color: $ultra-light-purple !important;
+  }
+}

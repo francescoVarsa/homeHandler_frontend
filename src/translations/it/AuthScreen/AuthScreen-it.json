@@ -2,5 +2,7 @@
   "form-title-signUp": "Registrati",
   "form-title-login": "Accedi",
   "form-button-label-signUp": "Registrati",
-  "form-button-label-login": "Accedi"
+  "form-button-label-login": "Accedi",
+  "no-account-registered": "Non hai ancora un account? Registrati",
+  "account-already-registered": "Hai già un account? Accedi"
 }
