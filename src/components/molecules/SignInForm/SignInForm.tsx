@@ -9,19 +9,35 @@ import {
   OutlinedInput,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
-import { Control, Controller } from "react-hook-form";
+import { forwardRef, useCallback, useImperativeHandle, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import Title from "../../atoms/Title/Title";
 import styles from "./../../organisms/AuthForm/AuthForm.module.scss";
 
-type SignInFormProps = {
-  control: Control<{ email: string; password: string }>;
+type SignInSchema = {
+  email: string;
+  password: string;
 };
 
-export default function SignInForm({ control }: SignInFormProps) {
+export const SignInForm = forwardRef((_, ref) => {
   const { t } = useTranslation();
-  const [secureTxt, setSecureTxt] = useState(false);
+  const [secureTxt, setSecureTxt] = useState(true);
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const submitHandler = useCallback(({ email, password }: SignInSchema) => {
+    console.log(email);
+  }, []);
+
+  useImperativeHandle(ref, () => ({
+    onSubmit: handleSubmit(submitHandler),
+  }));
+
   return (
     <>
       <Grid item md={12} sx={{ padding: "0px!important" }}>
@@ -46,12 +62,12 @@ export default function SignInForm({ control }: SignInFormProps) {
               return (
                 <TextField
                   id="outlined-basic-email"
-                  label="Email"
+                  label={t("inputValidation:label-email")}
                   variant="outlined"
                   size="small"
                   fullWidth
                   color="purple"
-                  placeholder="Email"
+                  placeholder={t("inputValidation:label-email")}
                   helperText={
                     fieldState.error != null ? fieldState.error.message : ""
                   }
@@ -91,16 +107,16 @@ export default function SignInForm({ control }: SignInFormProps) {
                     htmlFor="outlined-basic-pwd"
                     className={styles["form-input-wrapper__label"]}
                   >
-                    Password
+                    {t("inputValidation:label-pwd")}
                   </InputLabel>
                   <OutlinedInput
                     {...field}
                     id="outlined-basic-pwd"
-                    label="Password"
+                    label={t("inputValidation:label-pwd")}
                     size="small"
                     fullWidth
                     error={fieldState.error != null}
-                    placeholder="Password"
+                    placeholder={t("inputValidation:label-pwd")}
                     type={secureTxt ? "password" : "text"}
                     className={styles["pwd"]}
                     endAdornment={
@@ -132,4 +148,4 @@ export default function SignInForm({ control }: SignInFormProps) {
       </Grid>
     </>
   );
-}
+});

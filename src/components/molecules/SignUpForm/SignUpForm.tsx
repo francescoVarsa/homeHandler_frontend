@@ -77,7 +77,7 @@ export const SignUpForm = forwardRef((_, ref) => {
   return (
     <>
       <Grid ref={formRef} item md={12} sx={{ padding: "0px!important" }}>
-        <Title tag={"h5"} text={t("authPages:form-title-login")} />
+        <Title tag={"h5"} text={t("authPages:form-title-signUp")} />
       </Grid>
       <Grid container spacing={2}>
         <Grid item md={6} sm={12}>
