@@ -1,5 +1,12 @@
 {
   "required": "Questo campo è richiesto",
   "email-wrong-pattern": "Perfavore inserisci un'email valida",
-  "password-wrong-pattern": "La password deve contenere almeno 8 caratteri"
+  "password-wrong-pattern": "La password deve contenere almeno 8 caratteri",
+  "password-does-not-match": "Le password non coincidono",
+  "label-name": "Nome",
+  "label-last-name": "Cognome",
+  "label-email": "Email",
+  "label-pwd": "Password",
+  "label-pwd-confirm": "Conferma Password",
+  "min-3-character": "Almeno 3 caratteri"
 }

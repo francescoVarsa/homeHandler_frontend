@@ -33,7 +33,7 @@ type SignUpSchema = {
 export const SignUpForm = forwardRef((_, ref) => {
   const { t } = useTranslation();
   const [secureTxt, setSecureTxt] = useState(true);
-  const { control, handleSubmit, getValues, watch, setError } = useForm({
+  const { control, handleSubmit, clearErrors, watch, setError } = useForm({
     defaultValues: {
       name: "",
       lastName: "",
@@ -46,17 +46,22 @@ export const SignUpForm = forwardRef((_, ref) => {
 
   useEffect(() => {
     const subscribe = watch((name) => {
-      console.log(name);
       if (name.password !== name.confirmPassword) {
         setError("password", {
           type: "custom",
-          message: "Le password non coincidono",
+          message: t("inputValidation:password-does-not-match"),
         });
+        setError("confirmPassword", {
+          type: "custom",
+          message: t("inputValidation:password-does-not-match"),
+        });
+      } else {
+        clearErrors(["password", "confirmPassword"]);
       }
     });
 
-    return subscribe.unsubscribe();
-  }, [setError, watch]);
+    return () => subscribe.unsubscribe();
+  }, [clearErrors, setError, watch, t]);
 
   const submitHandler = useCallback(
     ({ name, lastName, email, password, confirmPassword }: SignUpSchema) => {
@@ -83,18 +88,22 @@ export const SignUpForm = forwardRef((_, ref) => {
                 value: true,
                 message: t("inputValidation:required"),
               },
+              minLength: {
+                value: 3,
+                message: t("inputValidation:min-3-character"),
+              },
             }}
             control={control}
             render={({ field, fieldState }) => {
               return (
                 <TextField
-                  id="outlined-basic-email"
-                  label="Name"
+                  id="outlined-basic-name"
+                  label={t("inputValidation:label-name")}
                   variant="outlined"
                   size="small"
                   fullWidth
                   color="purple"
-                  placeholder="Name"
+                  placeholder={t("inputValidation:label-name")}
                   helperText={
                     fieldState.error != null ? fieldState.error.message : ""
                   }
@@ -120,18 +129,22 @@ export const SignUpForm = forwardRef((_, ref) => {
                 value: true,
                 message: t("inputValidation:required"),
               },
+              minLength: {
+                value: 3,
+                message: t("inputValidation:min-3-character"),
+              },
             }}
             control={control}
             render={({ field, fieldState }) => {
               return (
                 <TextField
-                  id="outlined-basic-email"
-                  label="Last Name"
+                  id="outlined-basic-last-name"
+                  label={t("inputValidation:label-last-name")}
                   variant="outlined"
                   size="small"
                   fullWidth
                   color="purple"
-                  placeholder="Last Name"
+                  placeholder={t("inputValidation:label-last-name")}
                   helperText={
                     fieldState.error != null ? fieldState.error.message : ""
                   }
@@ -167,12 +180,12 @@ export const SignUpForm = forwardRef((_, ref) => {
               return (
                 <TextField
                   id="outlined-basic-email"
-                  label="Email"
+                  label={t("inputValidation:label-email")}
                   variant="outlined"
                   size="small"
                   fullWidth
                   color="purple"
-                  placeholder="Email"
+                  placeholder={t("inputValidation:label-email")}
                   helperText={
                     fieldState.error != null ? fieldState.error.message : ""
                   }
@@ -212,16 +225,16 @@ export const SignUpForm = forwardRef((_, ref) => {
                     htmlFor="outlined-basic-pwd"
                     className={styles["form-input-wrapper__label"]}
                   >
-                    Password
+                    {t("inputValidation:label-pwd")}
                   </InputLabel>
                   <OutlinedInput
                     {...field}
                     id="outlined-basic-pwd"
-                    label="Password"
+                    label={t("inputValidation:label-pwd")}
                     size="small"
                     fullWidth
                     error={fieldState.error != null}
-                    placeholder="Password"
+                    placeholder={t("inputValidation:label-pwd")}
                     type={secureTxt ? "password" : "text"}
                     className={styles["pwd"]}
                     endAdornment={
@@ -269,19 +282,19 @@ export const SignUpForm = forwardRef((_, ref) => {
                 <FormControl color="purple">
                   <InputLabel
                     size="small"
-                    htmlFor="outlined-basic-pwd"
+                    htmlFor="outlined-basic-pwd-confirm"
                     className={styles["form-input-wrapper__label"]}
                   >
-                    Confirm Password
+                    {t("inputValidation:label-pwd-confirm")}
                   </InputLabel>
                   <OutlinedInput
                     {...field}
-                    id="outlined-basic-pwd"
-                    label="Confirm Password"
+                    id="outlined-basic-pwd-confirm"
+                    label={t("inputValidation:label-pwd-confirm")}
                     size="small"
                     fullWidth
                     error={fieldState.error != null}
-                    placeholder="Confirm Password"
+                    placeholder={t("inputValidation:label-pwd-confirm")}
                     type={secureTxt ? "password" : "text"}
                     className={styles["pwd"]}
                     endAdornment={
