@@ -20,6 +20,8 @@ type SignInSchema = {
   password: string;
 };
 
+type SubmitHandler = (value: { username: string; password: string }) => void;
+
 export const SignInForm = forwardRef((_, ref) => {
   const { t } = useTranslation();
   const [secureTxt, setSecureTxt] = useState(true);
@@ -30,12 +32,21 @@ export const SignInForm = forwardRef((_, ref) => {
     },
   });
 
-  const submitHandler = useCallback(({ email, password }: SignInSchema) => {
-    console.log(email);
-  }, []);
+  const passCredentialToHandler = useCallback(
+    ({ email, password }: SignInSchema, submitHandler: SubmitHandler) => {
+      const credentials = { username: email, password };
+
+      submitHandler(credentials);
+    },
+    []
+  );
 
   useImperativeHandle(ref, () => ({
-    onSubmit: handleSubmit(submitHandler),
+    onSubmit: (loginFn: SubmitHandler) => {
+      const onSubmitHandler = (formData: SignInSchema) =>
+        passCredentialToHandler(formData, loginFn);
+      handleSubmit(onSubmitHandler)();
+    },
   }));
 
   return (
