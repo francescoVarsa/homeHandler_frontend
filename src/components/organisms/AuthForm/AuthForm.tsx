@@ -18,6 +18,14 @@ type LoginDataSchema = {
   password: string;
 };
 
+type RegistrationData = {
+  name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
 export default function AuthForm({ formType }: AuthFormProps) {
   const { t } = useTranslation();
 
@@ -29,9 +37,21 @@ export default function AuthForm({ formType }: AuthFormProps) {
 
   const handleLogin = async ({ username, password }: LoginDataSchema) => {
     const credentials = { username, password };
+    await loginTrigger(credentials).unwrap();
+  };
 
-    const response = await loginTrigger(credentials).unwrap();
-    console.log(response);
+  // Registration api call
+  const [signUpTrigger] = authApi.useSignUpMutation();
+
+  const handleRegistration = async ({
+    email,
+    name,
+    last_name,
+    password,
+  }: RegistrationData) => {
+    const credentials = { email, name, last_name, password };
+    const res = await signUpTrigger(credentials).unwrap();
+    console.log(res);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -40,7 +60,7 @@ export default function AuthForm({ formType }: AuthFormProps) {
     if (formType === "login") {
       loginFormRef.current.onSubmit(handleLogin);
     } else {
-      signUpFormRef.current.onSubmit();
+      signUpFormRef.current.onSubmit(handleRegistration);
     }
   };
 

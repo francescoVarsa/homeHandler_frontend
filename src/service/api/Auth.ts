@@ -4,6 +4,13 @@ interface RequestPayload {
     password: string,
 }
 
+interface SignUpPayload {
+    name: string,
+    last_name: string,
+    email: string,
+    password: string
+}
+
 interface Response {
     token: null | string
 }
@@ -17,9 +24,16 @@ export const authApi = createApi({
             query: (body) => ({
                 url: "signIn",
                 method: "POST",
-                body: body
+                body,
             }),
             invalidatesTags: ["Auth"]
+        }),
+        signUp: builder.mutation<Response, SignUpPayload>({
+            query: (body) => ({
+                url: "signUp",
+                method: "POST",
+                body,
+            })
         })
     })
 })

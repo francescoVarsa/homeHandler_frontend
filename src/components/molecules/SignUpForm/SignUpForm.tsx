@@ -30,6 +30,13 @@ type SignUpSchema = {
   confirmPassword: string;
 };
 
+type SubmitHandler = (value: {
+  email: string;
+  name: string;
+  last_name: string;
+  password: string;
+}) => void;
+
 export const SignUpForm = forwardRef((_, ref) => {
   const { t } = useTranslation();
   const [secureTxt, setSecureTxt] = useState(true);
@@ -63,15 +70,28 @@ export const SignUpForm = forwardRef((_, ref) => {
     return () => subscribe.unsubscribe();
   }, [clearErrors, setError, watch, t]);
 
-  const submitHandler = useCallback(
-    ({ name, lastName, email, password, confirmPassword }: SignUpSchema) => {
-      console.log(name);
+  const passCredentialToHandler = useCallback(
+    (
+      { name, lastName, email, password }: SignUpSchema,
+      submitHandler: SubmitHandler
+    ) => {
+      const registrationCredentials = {
+        email,
+        name,
+        last_name: lastName,
+        password,
+      };
+      submitHandler(registrationCredentials);
     },
     []
   );
 
   useImperativeHandle(ref, () => ({
-    onSubmit: handleSubmit(submitHandler),
+    onSubmit: (registrationFunction: SubmitHandler) => {
+      const onSubmitHandler = (formData: SignUpSchema) =>
+        passCredentialToHandler(formData, registrationFunction);
+      handleSubmit(onSubmitHandler)();
+    },
   }));
 
   return (
