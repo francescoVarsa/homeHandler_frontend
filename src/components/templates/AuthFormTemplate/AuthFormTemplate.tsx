@@ -18,13 +18,7 @@ export default function AuthFormTemplate({ children }: AuthFormTemplateProps) {
       >
         <Grid item md={6}>
           <AuthIllustration color="lightPurple" />
-          <BlurredBackground
-            borderThickness={1}
-            borderColor={"purple"}
-            rgbaColor={"rgb(16, 0, 43, 0.9)"}
-          >
-            {children}
-          </BlurredBackground>
+          {children}
         </Grid>
       </Grid>
     </Background>

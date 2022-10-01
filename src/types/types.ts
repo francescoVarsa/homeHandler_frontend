@@ -7,4 +7,4 @@ export type Colors =
 "lightPurple" |
 "megaLightPurple" |
 "ultraLightPurple" |
-"white"
+"white" | "success" | "error"

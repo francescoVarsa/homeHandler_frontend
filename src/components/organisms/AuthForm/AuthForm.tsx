@@ -11,11 +11,7 @@ import styles from "./AuthForm.module.scss";
 
 type AuthFormProps = {
   formType: "signUp" | "login";
-};
-
-type LoginDataSchema = {
-  username: string;
-  password: string;
+  authHandler: Function;
 };
 
 type RegistrationData = {
@@ -26,19 +22,11 @@ type RegistrationData = {
   confirmPassword: string;
 };
 
-export default function AuthForm({ formType }: AuthFormProps) {
+export default function AuthForm({ formType, authHandler }: AuthFormProps) {
   const { t } = useTranslation();
 
   const loginFormRef = useRef<any>(null);
   const signUpFormRef = useRef<any>(null);
-
-  // Login api call
-  const [loginTrigger] = authApi.useLoginMutation();
-
-  const handleLogin = async ({ username, password }: LoginDataSchema) => {
-    const credentials = { username, password };
-    await loginTrigger(credentials).unwrap();
-  };
 
   // Registration api call
   const [signUpTrigger] = authApi.useSignUpMutation();
@@ -58,7 +46,7 @@ export default function AuthForm({ formType }: AuthFormProps) {
     e.preventDefault();
 
     if (formType === "login") {
-      loginFormRef.current.onSubmit(handleLogin);
+      loginFormRef.current.onSubmit(authHandler);
     } else {
       signUpFormRef.current.onSubmit(handleRegistration);
     }

@@ -1,0 +1,10 @@
+@import "./../../styles/variables.scss";
+
+.MuiPaper-root {
+  background-color: $dark;
+}
+
+.feedback_content {
+  background-color: $dark;
+  padding: 30px;
+}

@@ -3,8 +3,6 @@ import AuthFormTemplate from "../../templates/AuthFormTemplate/AuthFormTemplate"
 
 export default function SignUp() {
   return (
-    <AuthFormTemplate>
-      <AuthForm formType="signUp" />
-    </AuthFormTemplate>
+    <AuthFormTemplate>{/* <AuthForm formType="signUp" /> */}</AuthFormTemplate>
   );
 }
