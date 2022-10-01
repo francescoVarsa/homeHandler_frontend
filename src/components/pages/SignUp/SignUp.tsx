@@ -34,13 +34,11 @@ export default function SignUp() {
     setIsLoading(true);
     setShowFeedback(true);
     try {
-      const res = await signUpTrigger(credentials).unwrap();
+      await signUpTrigger(credentials).unwrap();
       setIsSuccess(true);
       setIsLoading(false);
       setMessage(t("authPages:feedback-registration-success"));
-      console.log(res);
     } catch (error) {
-      console.log(error);
       setIsSuccess(false);
       setIsLoading(false);
       setMessage(t("authPages:feedback-registration-failed"));

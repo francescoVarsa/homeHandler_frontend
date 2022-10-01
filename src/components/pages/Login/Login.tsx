@@ -31,7 +31,6 @@ export default function Login() {
       setIsSuccess(true);
       setMessage(t("authPages:feedback-login-success"));
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsSuccess(false);
       setMessage(t("authPages:feedback-login-failed"));
