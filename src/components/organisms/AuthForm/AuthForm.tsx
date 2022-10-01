@@ -2,7 +2,6 @@ import { Grid } from "@mui/material";
 import { FormEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { authApi } from "../../../service/api/Auth";
 import Button from "../../atoms/Button/Button";
 import Paragraph from "../../atoms/Paragraph/Paragraph";
 import { SignInForm } from "../../molecules/SignInForm/SignInForm";
@@ -14,33 +13,11 @@ type AuthFormProps = {
   authHandler: Function;
 };
 
-type RegistrationData = {
-  name: string;
-  last_name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
 export default function AuthForm({ formType, authHandler }: AuthFormProps) {
   const { t } = useTranslation();
 
   const loginFormRef = useRef<any>(null);
   const signUpFormRef = useRef<any>(null);
-
-  // Registration api call
-  const [signUpTrigger] = authApi.useSignUpMutation();
-
-  const handleRegistration = async ({
-    email,
-    name,
-    last_name,
-    password,
-  }: RegistrationData) => {
-    const credentials = { email, name, last_name, password };
-    const res = await signUpTrigger(credentials).unwrap();
-    console.log(res);
-  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,7 +25,7 @@ export default function AuthForm({ formType, authHandler }: AuthFormProps) {
     if (formType === "login") {
       loginFormRef.current.onSubmit(authHandler);
     } else {
-      signUpFormRef.current.onSubmit(handleRegistration);
+      signUpFormRef.current.onSubmit(authHandler);
     }
   };
 
