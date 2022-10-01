@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { authApi } from "../../../service/api/Auth";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import FeedBack from "../../FeedBack/FeedBack";
@@ -14,11 +15,14 @@ type RegistrationData = {
 };
 
 export default function SignUp() {
+  const { t } = useTranslation();
+
   // Registration api call
   const [signUpTrigger] = authApi.useSignUpMutation();
   const [showFeedback, setShowFeedback] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [message, setMessage] = useState<string | undefined>();
 
   const handleRegistration = async ({
     email,
@@ -33,11 +37,13 @@ export default function SignUp() {
       const res = await signUpTrigger(credentials).unwrap();
       setIsSuccess(true);
       setIsLoading(false);
+      setMessage(t("authPages:feedback-registration-success"));
       console.log(res);
     } catch (error) {
       console.log(error);
       setIsSuccess(false);
       setIsLoading(false);
+      setMessage(t("authPages:feedback-registration-failed"));
     }
   };
 
@@ -48,11 +54,7 @@ export default function SignUp() {
           isLoading={isLoading}
           isOpen={showFeedback}
           isSuccess={isSuccess}
-          message={
-            isSuccess
-              ? "Accesso avvenuto correttamente"
-              : "Accesso fallito credenziali errate"
-          }
+          message={message}
         />
       ) : (
         <BlurredBackground

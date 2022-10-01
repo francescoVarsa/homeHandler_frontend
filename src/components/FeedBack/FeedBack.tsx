@@ -1,16 +1,16 @@
-import { CircularProgress, Dialog, Grid, Slide, useTheme } from "@mui/material";
-import { TransitionProps } from "@mui/material/transitions";
-import { forwardRef, useCallback, useEffect, useState } from "react";
-import styles from "./FeedBack.module.scss";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import Paragraph from "../atoms/Paragraph/Paragraph";
+import { CircularProgress, Dialog, Grid, Slide, useTheme } from "@mui/material";
+import { TransitionProps } from "@mui/material/transitions";
+import { forwardRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Paragraph from "../atoms/Paragraph/Paragraph";
+import styles from "./FeedBack.module.scss";
 
 type FeedBackProps = {
   isLoading: boolean;
   isSuccess: boolean;
-  message: string;
+  message?: string;
   isOpen: boolean;
 };
 
@@ -82,7 +82,9 @@ export default function FeedBack({
           justifyContent={"center"}
           textAlign={"center"}
         >
-          <Paragraph text={message} color={isSuccess ? "success" : "error"} />
+          {message && (
+            <Paragraph text={message} color={isSuccess ? "success" : "error"} />
+          )}
         </Grid>
       </Grid>
     </Dialog>

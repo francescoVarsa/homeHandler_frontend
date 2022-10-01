@@ -4,5 +4,9 @@
   "form-button-label-signIn": "Sign In",
   "form-button-label-login": "Login",
   "no-account-registered": "Don't have an account yet? Register",
-  "account-already-registered": "Already have an account? Login"
+  "account-already-registered": "Already have an account? Login",
+  "feedback-login-success": "Login successful",
+  "feedback-login-failed": "Login failed wrong credentials",
+  "feedback-registration-success": "Registration successfull",
+  "feedback-registration-failed": "Registration failed user already exists"
 }

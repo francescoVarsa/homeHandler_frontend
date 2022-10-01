@@ -4,5 +4,9 @@
   "form-button-label-signUp": "Registrati",
   "form-button-label-login": "Accedi",
   "no-account-registered": "Non hai ancora un account? Registrati",
-  "account-already-registered": "Hai già un account? Accedi"
+  "account-already-registered": "Hai già un account? Accedi",
+  "feedback-login-success": "Accesso avvenuto con successo",
+  "feedback-login-failed": "Accesso fallito credenziali errate",
+  "feedback-registration-success": "Registrazione avvenuta con successo",
+  "feedback-registration-failed": "Registrazione avvenuta con successo"
 }

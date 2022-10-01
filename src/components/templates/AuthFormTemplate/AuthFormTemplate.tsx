@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
 import Background from "../../atoms/backgrouds/Background/Background";
-import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import AuthIllustration from "../../atoms/Illustrations/AuthIllustration";
 
 type AuthFormTemplateProps = {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { authApi } from "../../../service/api/Auth";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import FeedBack from "../../FeedBack/FeedBack";
@@ -11,11 +12,14 @@ type LoginDataSchema = {
 };
 
 export default function Login() {
+  const { t } = useTranslation();
+
   // Login api call
   const [loginTrigger, loginInfo] = authApi.useLoginMutation();
   const [isLoading, setIsLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [message, setMessage] = useState<string | undefined>();
 
   const handleLogin = async ({ username, password }: LoginDataSchema) => {
     const credentials = { username, password };
@@ -24,11 +28,13 @@ export default function Login() {
     try {
       await loginTrigger(credentials).unwrap();
       setIsLoading(loginInfo.isLoading);
-      setIsSuccess(loginInfo.isSuccess);
+      setIsSuccess(true);
+      setMessage(t("authPages:feedback-login-success"));
     } catch (error) {
       console.log(error);
       setIsLoading(false);
       setIsSuccess(false);
+      setMessage(t("authPages:feedback-login-failed"));
     }
   };
 
@@ -39,11 +45,7 @@ export default function Login() {
           isLoading={isLoading}
           isOpen={showDialog}
           isSuccess={isSuccess}
-          message={
-            isSuccess
-              ? "Accesso avvenuto correttamente"
-              : "Accesso fallito credenziali errate"
-          }
+          message={message}
         />
       ) : (
         <BlurredBackground
