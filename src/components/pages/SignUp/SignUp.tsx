@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { authApi } from "../../../service/api/Auth";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import FeedBack from "../../FeedBack/FeedBack";
@@ -16,6 +17,7 @@ type RegistrationData = {
 
 export default function SignUp() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   // Registration api call
   const [signUpTrigger] = authApi.useSignUpMutation();
@@ -45,6 +47,11 @@ export default function SignUp() {
     }
   };
 
+  const onFeedBackClose = useCallback(
+    () => navigate("/home/dashboard"),
+    [navigate]
+  );
+
   return (
     <AuthFormTemplate>
       {showFeedback ? (
@@ -53,6 +60,7 @@ export default function SignUp() {
           isOpen={showFeedback}
           isSuccess={isSuccess}
           message={message}
+          onFeedbackClose={onFeedBackClose}
         />
       ) : (
         <BlurredBackground

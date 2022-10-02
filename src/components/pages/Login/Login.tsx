@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { authApi } from "../../../service/api/Auth";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import FeedBack from "../../FeedBack/FeedBack";
@@ -13,6 +14,7 @@ type LoginDataSchema = {
 
 export default function Login() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   // Login api call
   const [loginTrigger, loginInfo] = authApi.useLoginMutation();
@@ -37,6 +39,11 @@ export default function Login() {
     }
   };
 
+  const onFeedBackClose = useCallback(
+    () => navigate("/home/dashboard"),
+    [navigate]
+  );
+
   return (
     <AuthFormTemplate>
       {showDialog ? (
@@ -45,6 +52,7 @@ export default function Login() {
           isOpen={showDialog}
           isSuccess={isSuccess}
           message={message}
+          onFeedbackClose={onFeedBackClose}
         />
       ) : (
         <BlurredBackground

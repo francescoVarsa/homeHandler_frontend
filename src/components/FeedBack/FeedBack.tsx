@@ -12,6 +12,7 @@ type FeedBackProps = {
   isSuccess: boolean;
   message?: string;
   isOpen: boolean;
+  onFeedbackClose?: Function;
 };
 
 const Transition = forwardRef(function Transition(
@@ -28,6 +29,7 @@ export default function FeedBack({
   isOpen,
   isSuccess,
   message,
+  onFeedbackClose,
 }: FeedBackProps) {
   const [showDialog, setShowDialog] = useState(isOpen);
   const theme = useTheme();
@@ -36,9 +38,9 @@ export default function FeedBack({
   useEffect(() => {
     setTimeout(() => {
       setShowDialog(false);
-      navigate(0);
+      onFeedbackClose && onFeedbackClose();
     }, 2000);
-  }, [navigate]);
+  }, [navigate, onFeedbackClose]);
 
   return (
     <Dialog
