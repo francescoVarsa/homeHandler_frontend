@@ -60,7 +60,7 @@ export default function AuthForm({ formType, authHandler }: AuthFormProps) {
           />{" "}
         </Link>
       </Grid>
-      <Grid item md={12}>
+      <Grid item md={12} display={"flex"}>
         <Button
           type={"submit"}
           variant={"outlined"}

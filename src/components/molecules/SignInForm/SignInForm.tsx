@@ -1,5 +1,6 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
+  Box,
   FormControl,
   FormHelperText,
   Grid,
@@ -14,6 +15,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import Title from "../../atoms/Title/Title";
 import styles from "./../../organisms/AuthForm/AuthForm.module.scss";
+import Paragraph from "../../atoms/Paragraph/Paragraph";
 
 type SignInSchema = {
   email: string;
@@ -156,6 +158,13 @@ export const SignInForm = forwardRef((_, ref) => {
             }}
           />
         </Grid>
+        <Box paddingTop={2} paddingLeft={2}>
+          <Paragraph
+            small={true}
+            color={"purple"}
+            text={"Password dimenticata?"}
+          />
+        </Box>
       </Grid>
     </>
   );
