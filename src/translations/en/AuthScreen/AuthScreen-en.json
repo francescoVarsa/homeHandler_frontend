@@ -8,5 +8,6 @@
   "feedback-login-success": "Login successful",
   "feedback-login-failed": "Login failed wrong credentials",
   "feedback-registration-success": "Registration successfull",
-  "feedback-registration-failed": "Registration failed user already exists"
+  "feedback-registration-failed": "Registration failed user already exists",
+  "forgot-password-label": "Forgot Password?"
 }
