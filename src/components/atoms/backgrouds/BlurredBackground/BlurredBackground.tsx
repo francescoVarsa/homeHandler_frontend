@@ -8,6 +8,7 @@ type BlurredBackgroundProps = {
   borderThickness?: number;
   children: JSX.Element | JSX.Element[];
   widthPercentage?: number;
+  neonEffect?: boolean;
 };
 
 export default function BlurredBackground({
@@ -16,6 +17,7 @@ export default function BlurredBackground({
   borderThickness = 1,
   children,
   widthPercentage = 30,
+  neonEffect = true,
 }: BlurredBackgroundProps) {
   const theme = useTheme();
   return (
@@ -26,7 +28,9 @@ export default function BlurredBackground({
       left={"50%"}
       padding={"30px 50px"}
       width={`${widthPercentage}%`}
-      className={styles["form-wrapper"]}
+      className={`${styles["form-wrapper"]} ${
+        neonEffect ? styles["form-wrapper__neon"] : ""
+      }`}
       borderRadius={5}
       border={`${borderThickness}px solid ${theme.palette[borderColor].main}`}
     >

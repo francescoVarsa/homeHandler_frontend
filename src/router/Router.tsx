@@ -8,6 +8,7 @@ import {
 import LandingPage from "../components/pages/LandingPage/LandingPage";
 import Login from "../components/pages/Login/Login";
 import NotFound from "../components/pages/NotFound/NotFound";
+import RequestNewPassword from "../components/pages/RequestNewPassword/RequestNewPassword";
 import SignUp from "../components/pages/SignUp/SignUp";
 import { routes } from "../config/RoutesMap";
 import { store } from "./../redux/store";
@@ -56,7 +57,7 @@ export default function Router() {
         <Route path={home} element={<ProtectedRoutes />}>
           <Route path={home_dashboard} element={<Dashboard />} />
         </Route>
-        <Route path={requestResetPassword} element={<div>reset</div>} />
+        <Route path={requestResetPassword} element={<RequestNewPassword />} />
       </Routes>
     </BrowserRouter>
   );

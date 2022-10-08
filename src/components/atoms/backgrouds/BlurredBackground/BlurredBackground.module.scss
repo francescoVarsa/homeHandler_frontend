@@ -1,4 +1,10 @@
+@import "./../../../../styles/variables.scss";
+
 .form-wrapper {
-    transform: translate(-50%, -50%);
-    backdrop-filter: blur(15px);
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(15px);
+
+  &__neon {
+    box-shadow: 0px 0px 40px 5px $purple;
+  }
 }

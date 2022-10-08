@@ -9,19 +9,23 @@ import * as authPagesIT from "./translations/it/AuthScreen/AuthScreen-it.json"
 import * as authPagesEN from "./translations/en/AuthScreen/AuthScreen-en.json"
 import * as inputValidationIT from "./translations/it/InputValidation/inputValidation-it.json"
 import * as inputValidationEN from "./translations/en/InputValidation/inputValidation-en.json"
+import * as resetPasswordStepperIT from "./translations/it/PasswordReset/PasswordReset-it.json"
+import * as resetPasswordStepperEN from "./translations/en/PasswordReset/PasswordReset-en.json"
 
 const resources = {
   en: {
     landingPage: landingPageEN,
     notFoundPage:  notFoundPageEN,
     authPages: authPagesEN,
-    inputValidation: inputValidationEN
+    inputValidation: inputValidationEN,
+    resetPassword: resetPasswordStepperEN
   },
   it: {
     landingPage: landingPageIT,
     notFoundPage:  notFoundPageIT,
     authPages: authPagesIT,
-    inputValidation: inputValidationIT
+    inputValidation: inputValidationIT,
+    resetPassword: resetPasswordStepperIT
   },
 };
 
