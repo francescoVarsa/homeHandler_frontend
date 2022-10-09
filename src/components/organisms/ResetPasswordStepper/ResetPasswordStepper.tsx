@@ -7,11 +7,11 @@ import {
   Stepper,
   Typography,
 } from "@mui/material";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import QuestionMark from "../../atoms/Illustrations/QuestionMark";
-import ResetPasswordStep from "../../molecules/ResetPasswordStep/ResetPasswordStep";
+import { ResetPasswordStep } from "../../molecules/ResetPasswordStep/ResetPasswordStep";
 import styles from "./ResetPasswordStepper.module.scss";
 
 type ResetPasswordStepperProps = {
@@ -39,9 +39,9 @@ export default function ResetPasswordStepper({
     [t]
   );
 
-  const handleNext = () => {
+  const goToNextStep = useCallback(() => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+  }, []);
 
   return (
     <>
@@ -93,7 +93,7 @@ export default function ResetPasswordStepper({
         ) : (
           <ActiveStepContent
             steps={steps}
-            handleNext={handleNext}
+            handleNext={goToNextStep}
             activeStep={activeStep}
           />
         )}
@@ -108,16 +108,25 @@ const ActiveStepContent = ({
   steps,
 }: ActiveStepContentProps) => {
   const { t } = useTranslation();
+  const stepRef = useRef<any>(null);
+  const handleStepExecution = useCallback(() => {
+    if (stepRef?.current) {
+      const step = stepRef.current;
+
+      step.sendResetEmail();
+    }
+  }, []);
+
   return (
     <>
-      <ResetPasswordStep step={activeStep as 0 | 1} />
+      <ResetPasswordStep step={activeStep as 0 | 1} ref={stepRef} />
       <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
         <Box sx={{ flex: "1 1 auto" }} />
         <Button
           variant="outlined"
           size="large"
           color="purple"
-          onClick={handleNext}
+          onClick={handleStepExecution}
         >
           {activeStep === steps.length - 1
             ? t("resetPassword:step-button-label-finish")

@@ -7,7 +7,6 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  TextField,
 } from "@mui/material";
 import {
   forwardRef,
@@ -19,10 +18,10 @@ import {
 } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import EmailInputField from "../EmailInputField/EmailInputField";
+import TextInput from "../../atoms/TextInput/TextInput";
 import Title from "../../atoms/Title/Title";
 import styles from "../../organisms/AuthForm/AuthForm.module.scss";
-import TextInput from "../../atoms/TextInput/TextInput";
+import EmailInputField from "../EmailInputField/EmailInputField";
 
 type SignUpSchema = {
   name: string;

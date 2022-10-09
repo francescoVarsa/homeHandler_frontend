@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { authApi } from "../../../service/api/Auth";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
-import FeedBack from "../../FeedBack/FeedBack";
+import FeedBack from "../../atoms/FeedBack/FeedBack";
 import AuthForm from "../../organisms/AuthForm/AuthForm";
 import AuthFormTemplate from "../../templates/AuthFormTemplate/AuthFormTemplate";
 

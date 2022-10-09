@@ -4,7 +4,7 @@ import { CircularProgress, Dialog, Grid, Slide, useTheme } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
 import { forwardRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Paragraph from "../atoms/Paragraph/Paragraph";
+import Paragraph from "../Paragraph/Paragraph";
 import styles from "./FeedBack.module.scss";
 
 type FeedBackProps = {
