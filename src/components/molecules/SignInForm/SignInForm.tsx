@@ -8,15 +8,15 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  TextField,
 } from "@mui/material";
 import { forwardRef, useCallback, useImperativeHandle, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import EmailInputField from "../EmailInputField/EmailInputField";
+import Paragraph from "../../atoms/Paragraph/Paragraph";
 import Title from "../../atoms/Title/Title";
 import styles from "./../../organisms/AuthForm/AuthForm.module.scss";
-import Paragraph from "../../atoms/Paragraph/Paragraph";
-import { useNavigate } from "react-router-dom";
 
 type SignInSchema = {
   email: string;
@@ -65,45 +65,7 @@ export const SignInForm = forwardRef((_, ref) => {
       </Grid>
       <Grid container spacing={2}>
         <Grid item md={6} sm={12}>
-          <Controller
-            name="email"
-            rules={{
-              required: {
-                value: true,
-                message: t("inputValidation:required"),
-              },
-              pattern: {
-                value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-                message: t("inputValidation:email-wrong-pattern"),
-              },
-            }}
-            control={control}
-            render={({ field, fieldState }) => {
-              return (
-                <TextField
-                  id="outlined-basic-email"
-                  label={t("inputValidation:label-email")}
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  color="purple"
-                  placeholder={t("inputValidation:label-email")}
-                  helperText={
-                    fieldState.error != null ? fieldState.error.message : ""
-                  }
-                  error={fieldState.error != null}
-                  className={styles["form-input-wrapper"]}
-                  InputLabelProps={{
-                    className: styles["form-input-wrapper__label"],
-                  }}
-                  InputProps={{
-                    className: styles["form-input-wrapper__input"],
-                  }}
-                  {...field}
-                />
-              );
-            }}
-          />
+          <EmailInputField control={control} />
         </Grid>
         <Grid item md={6} sm={12}>
           <Controller

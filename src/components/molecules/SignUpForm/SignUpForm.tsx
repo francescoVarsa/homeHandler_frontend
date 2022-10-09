@@ -19,8 +19,10 @@ import {
 } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import EmailInputField from "../EmailInputField/EmailInputField";
 import Title from "../../atoms/Title/Title";
 import styles from "../../organisms/AuthForm/AuthForm.module.scss";
+import TextInput from "../../atoms/TextInput/TextInput";
 
 type SignUpSchema = {
   name: string;
@@ -116,27 +118,7 @@ export const SignUpForm = forwardRef((_, ref) => {
             control={control}
             render={({ field, fieldState }) => {
               return (
-                <TextField
-                  id="outlined-basic-name"
-                  label={t("inputValidation:label-name")}
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  color="purple"
-                  placeholder={t("inputValidation:label-name")}
-                  helperText={
-                    fieldState.error != null ? fieldState.error.message : ""
-                  }
-                  error={fieldState.error != null}
-                  className={styles["form-input-wrapper"]}
-                  InputLabelProps={{
-                    className: styles["form-input-wrapper__label"],
-                  }}
-                  InputProps={{
-                    className: styles["form-input-wrapper__input"],
-                  }}
-                  {...field}
-                />
+                <TextInput field={field} fieldState={fieldState} id={"name"} />
               );
             }}
           />
@@ -157,71 +139,17 @@ export const SignUpForm = forwardRef((_, ref) => {
             control={control}
             render={({ field, fieldState }) => {
               return (
-                <TextField
-                  id="outlined-basic-last-name"
-                  label={t("inputValidation:label-last-name")}
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  color="purple"
-                  placeholder={t("inputValidation:label-last-name")}
-                  helperText={
-                    fieldState.error != null ? fieldState.error.message : ""
-                  }
-                  error={fieldState.error != null}
-                  className={styles["form-input-wrapper"]}
-                  InputLabelProps={{
-                    className: styles["form-input-wrapper__label"],
-                  }}
-                  InputProps={{
-                    className: styles["form-input-wrapper__input"],
-                  }}
-                  {...field}
+                <TextInput
+                  field={field}
+                  fieldState={fieldState}
+                  id={"last-name"}
                 />
               );
             }}
           />
         </Grid>
         <Grid item md={12} sm={12}>
-          <Controller
-            name="email"
-            rules={{
-              required: {
-                value: true,
-                message: t("inputValidation:required"),
-              },
-              pattern: {
-                value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-                message: t("inputValidation:email-wrong-pattern"),
-              },
-            }}
-            control={control}
-            render={({ field, fieldState }) => {
-              return (
-                <TextField
-                  id="outlined-basic-email"
-                  label={t("inputValidation:label-email")}
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  color="purple"
-                  placeholder={t("inputValidation:label-email")}
-                  helperText={
-                    fieldState.error != null ? fieldState.error.message : ""
-                  }
-                  error={fieldState.error != null}
-                  className={styles["form-input-wrapper"]}
-                  InputLabelProps={{
-                    className: styles["form-input-wrapper__label"],
-                  }}
-                  InputProps={{
-                    className: styles["form-input-wrapper__input"],
-                  }}
-                  {...field}
-                />
-              );
-            }}
-          />
+          <EmailInputField control={control} />
         </Grid>
         <Grid item md={6} sm={12}>
           <Controller
