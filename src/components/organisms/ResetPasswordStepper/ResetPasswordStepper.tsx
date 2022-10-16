@@ -7,7 +7,7 @@ import {
   Stepper,
   Typography,
 } from "@mui/material";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import QuestionMark from "../../atoms/Illustrations/QuestionMark";
@@ -22,6 +22,7 @@ type ActiveStepContentProps = {
   activeStep: number;
   steps: string[];
   handleNext: () => void;
+  setIsStepFailed: (value: boolean) => void;
 };
 
 export default function ResetPasswordStepper({
@@ -29,6 +30,7 @@ export default function ResetPasswordStepper({
 }: ResetPasswordStepperProps) {
   const [activeStep, setActiveStep] = useState(currentStep ?? 0);
   const { t } = useTranslation();
+  const [isStepFailed, setIsStepFailed] = useState(false);
 
   const steps = useMemo(
     () => [
@@ -53,25 +55,30 @@ export default function ResetPasswordStepper({
             <StepConnector classes={{ line: styles.connector__line }} />
           }
         >
-          {steps.map((label) => {
+          {steps.map((label, index) => {
             const stepProps: { completed?: boolean } = {};
             const labelProps: {
               optional?: React.ReactNode;
             } = {};
+
             return (
               <Step key={label} {...stepProps}>
                 <StepLabel
+                  // Assign error only on the active step
+                  error={activeStep === index && isStepFailed}
                   StepIconProps={{
                     classes: {
                       root: styles.step__icon,
                       active: styles["step__icon--active"],
                       completed: styles["step__icon--completed"],
+                      error: styles["step__icon--error"],
                     },
                   }}
                   classes={{
                     label: styles.connector__label,
                     active: styles["connector__label--active"],
                     completed: styles["connector__label--completed"],
+                    error: styles["step__icon--error"],
                   }}
                   {...labelProps}
                 >
@@ -95,6 +102,7 @@ export default function ResetPasswordStepper({
             steps={steps}
             handleNext={goToNextStep}
             activeStep={activeStep}
+            setIsStepFailed={setIsStepFailed}
           />
         )}
       </BlurredBackground>
@@ -106,32 +114,48 @@ const ActiveStepContent = ({
   activeStep,
   handleNext,
   steps,
+  setIsStepFailed,
 }: ActiveStepContentProps) => {
   const { t } = useTranslation();
   const stepRef = useRef<any>(null);
+  const [stopStepper, setStopStepper] = useState(false);
+
   const handleStepExecution = useCallback(() => {
     if (stepRef?.current) {
       const step = stepRef.current;
 
-      step.sendResetEmail();
+      // Handle first step ops
+      if (activeStep === 0) {
+        step.sendResetEmail();
+
+        // On request submit if the step is the first we block the step removing the next button from the DOM
+        // because the next step is unlocked by the user when he will come from the email sent to him.
+        setStopStepper(true);
+      }
     }
-  }, []);
+  }, [activeStep]);
 
   return (
     <>
-      <ResetPasswordStep step={activeStep as 0 | 1} ref={stepRef} />
+      <ResetPasswordStep
+        setIsStepFailed={setIsStepFailed}
+        step={activeStep as 0 | 1}
+        ref={stepRef}
+      />
       <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
         <Box sx={{ flex: "1 1 auto" }} />
-        <Button
-          variant="outlined"
-          size="large"
-          color="purple"
-          onClick={handleStepExecution}
-        >
-          {activeStep === steps.length - 1
-            ? t("resetPassword:step-button-label-finish")
-            : t("resetPassword:step-button-label-next")}
-        </Button>
+        {!stopStepper && (
+          <Button
+            variant="outlined"
+            size="large"
+            color="purple"
+            onClick={handleStepExecution}
+          >
+            {activeStep === steps.length - 1
+              ? t("resetPassword:step-button-label-finish")
+              : t("resetPassword:step-button-label-next")}
+          </Button>
+        )}
       </Box>
     </>
   );

@@ -1,5 +1,5 @@
 import { CircularProgress, Grid, Typography, useTheme } from "@mui/material";
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { Control, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { authApi } from "../../../service/api/Auth";
@@ -9,6 +9,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 type ResetPasswordStepProps = {
   step: 0 | 1;
+  setIsStepFailed: (value: boolean) => void;
 };
 
 type StepRequestFormProps = {
@@ -24,22 +25,19 @@ type StepViewProps = {
 };
 
 export const ResetPasswordStep = forwardRef(
-  ({ step }: ResetPasswordStepProps, ref) => {
+  ({ step, setIsStepFailed }: ResetPasswordStepProps, ref) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<null | string>(null);
     const [stepCompleted, setStepCompleted] = useState(false);
-    const theme = useTheme();
     const { control, handleSubmit } = useForm({
       defaultValues: {
         email: "",
       },
     });
 
-    const [
-      sendRequestNewPasswordEmailTrigger,
-      sendRequestNewPasswordEmailInfo,
-    ] = authApi.useSendResetPasswordEmailMutation();
+    const [sendRequestNewPasswordEmailTrigger] =
+      authApi.useSendResetPasswordEmailMutation();
 
     const onSubmit = async ({ email }: { email: string }) => {
       const payload = {
@@ -58,7 +56,7 @@ export const ResetPasswordStep = forwardRef(
         let errMessage = t("resetPassword:generic-err-response");
 
         if (error.status === 400) {
-          errMessage = t("passwordReset:user-not-exists");
+          errMessage = t("resetPassword:user-not-exists");
         }
         setError(errMessage);
 
@@ -70,6 +68,14 @@ export const ResetPasswordStep = forwardRef(
     useImperativeHandle(ref, () => ({
       sendResetEmail: () => handleSubmit(onSubmit)(),
     }));
+
+    useEffect(() => {
+      if (error) {
+        setIsStepFailed(true);
+      } else {
+        setIsStepFailed(false);
+      }
+    }, [error]);
 
     return (
       <Grid container mt={6} columnSpacing={4}>
@@ -154,6 +160,7 @@ const Error = ({ message }: { message: string }) => {
 
 const Completed = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <Grid container item md={12} display={"flex"} rowSpacing={2}>
       <Grid item md={12} textAlign={"center"}>
@@ -164,7 +171,7 @@ const Completed = () => {
       </Grid>
       <Grid item md={12} textAlign={"center"}>
         <Typography color={theme.palette["success"].main} fontWeight={600}>
-          Step completed
+          {t("resetPassword:email-sent")}
         </Typography>
       </Grid>
     </Grid>
