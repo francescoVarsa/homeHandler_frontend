@@ -23,6 +23,15 @@ interface SendEmailResponse {
   message: string;
 }
 
+interface ResetPassword {
+  password: string;
+  token: string;
+}
+
+interface ResetPasswordResponse {
+  message: string;
+}
+
 export const authApi = createApi({
   reducerPath: "authApi",
   tagTypes: ["Auth"],
@@ -49,6 +58,13 @@ export const authApi = createApi({
     >({
       query: (body) => ({
         url: "resetPassword",
+        method: "POST",
+        body,
+      }),
+    }),
+    resetPassword: builder.mutation<ResetPasswordResponse, ResetPassword>({
+      query: (body) => ({
+        url: "saveNewPassword",
         method: "POST",
         body,
       }),

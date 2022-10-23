@@ -43,21 +43,28 @@ export default function Router() {
     login,
     signUp,
     requestResetPassword,
+    resetPassword,
   } = routes;
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="*" element={<NotFound />} />
+
         <Route path="/" element={<AuthFlow />}>
           <Route path={landingPage} element={<LandingPage />} />
           <Route path={login} element={<Login />} />
           <Route path={signUp} element={<SignUp />} />
+          <Route path={requestResetPassword} element={<RequestNewPassword />} />
+          <Route
+            path={resetPassword}
+            element={<RequestNewPassword step={1} />}
+          />
         </Route>
+
         <Route path={home} element={<ProtectedRoutes />}>
           <Route path={home_dashboard} element={<Dashboard />} />
         </Route>
-        <Route path={requestResetPassword} element={<RequestNewPassword />} />
       </Routes>
     </BrowserRouter>
   );

@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import QuestionMark from "../../atoms/Illustrations/QuestionMark";
 import { ResetPasswordStep } from "../../molecules/ResetPasswordStep/ResetPasswordStep";
@@ -16,6 +17,7 @@ import styles from "./ResetPasswordStepper.module.scss";
 
 type ResetPasswordStepperProps = {
   currentStep?: number;
+  token?: string;
 };
 
 type ActiveStepContentProps = {
@@ -23,10 +25,12 @@ type ActiveStepContentProps = {
   steps: string[];
   handleNext: () => void;
   setIsStepFailed: (value: boolean) => void;
+  token?: string;
 };
 
 export default function ResetPasswordStepper({
   currentStep,
+  token,
 }: ResetPasswordStepperProps) {
   const [activeStep, setActiveStep] = useState(currentStep ?? 0);
   const { t } = useTranslation();
@@ -103,6 +107,7 @@ export default function ResetPasswordStepper({
             handleNext={goToNextStep}
             activeStep={activeStep}
             setIsStepFailed={setIsStepFailed}
+            token={token}
           />
         )}
       </BlurredBackground>
@@ -115,10 +120,22 @@ const ActiveStepContent = ({
   handleNext,
   steps,
   setIsStepFailed,
+  token,
 }: ActiveStepContentProps) => {
   const { t } = useTranslation();
   const stepRef = useRef<any>(null);
-  const [stopStepper, setStopStepper] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const navigate = useNavigate();
+  const [stepFailed, setStepFailed] = useState(false);
+  const [blockStep, setBlockStep] = useState(false);
+
+  useEffect(() => {
+    if ((activeStep === 0 && isCompleted) || (activeStep === 0 && stepFailed)) {
+      setBlockStep(true);
+    } else {
+      setBlockStep(false);
+    }
+  }, [activeStep, isCompleted, stepFailed]);
 
   const handleStepExecution = useCallback(() => {
     if (stepRef?.current) {
@@ -127,13 +144,20 @@ const ActiveStepContent = ({
       // Handle first step ops
       if (activeStep === 0) {
         step.sendResetEmail();
+      }
 
-        // On request submit if the step is the first we block the step removing the next button from the DOM
-        // because the next step is unlocked by the user when he will come from the email sent to him.
-        setStopStepper(true);
+      // Handle second step ops
+      if (activeStep === 1) {
+        step.resetPassword();
+        handleNext();
+      }
+
+      // Handle third step ops
+      if (activeStep === 2) {
+        navigate("/login");
       }
     }
-  }, [activeStep]);
+  }, [activeStep, handleNext, navigate]);
 
   return (
     <>
@@ -141,10 +165,22 @@ const ActiveStepContent = ({
         setIsStepFailed={setIsStepFailed}
         step={activeStep as 0 | 1}
         ref={stepRef}
+        token={token}
+        setStepFailed={setStepFailed}
+        setIsCompleted={setIsCompleted}
       />
       <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
         <Box sx={{ flex: "1 1 auto" }} />
-        {!stopStepper && (
+        <Button
+          variant="outlined"
+          size="large"
+          color="error"
+          sx={{ marginRight: "10px" }}
+          onClick={() => navigate("/login")}
+        >
+          {t("resetPassword:back-to")}
+        </Button>
+        {!blockStep && (
           <Button
             variant="outlined"
             size="large"

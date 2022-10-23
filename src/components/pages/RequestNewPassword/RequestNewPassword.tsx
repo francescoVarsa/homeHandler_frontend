@@ -1,8 +1,20 @@
 import { Grid } from "@mui/material";
+import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 import Background from "../../atoms/backgrouds/Background/Background";
 import ResetPasswordStepper from "../../organisms/ResetPasswordStepper/ResetPasswordStepper";
 
-export default function RequestNewPassword() {
+type RequestNewPasswordProps = {
+  step?: number;
+};
+
+export default function RequestNewPassword({ step }: RequestNewPasswordProps) {
+  const navParams = useParams();
+  const resetValidationToken = useMemo(
+    () => navParams?.token,
+    [navParams?.token]
+  );
+
   return (
     <Background>
       <Grid
@@ -12,7 +24,10 @@ export default function RequestNewPassword() {
         justifyContent={"center"}
       >
         <Grid item md={6}>
-          <ResetPasswordStepper />
+          <ResetPasswordStepper
+            currentStep={step}
+            token={resetValidationToken}
+          />
         </Grid>
       </Grid>
     </Background>
