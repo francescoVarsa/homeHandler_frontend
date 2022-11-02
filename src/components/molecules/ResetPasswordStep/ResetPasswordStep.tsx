@@ -153,7 +153,7 @@ export const ResetPasswordStep = forwardRef(
       }) => {
         const payload = {
           token: token ?? "",
-          password,
+          new_password: password,
         };
         setIsLoading(true);
         setError(null);

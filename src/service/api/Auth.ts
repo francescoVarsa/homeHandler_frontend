@@ -24,7 +24,7 @@ interface SendEmailResponse {
 }
 
 interface ResetPassword {
-  password: string;
+  new_password: string;
   token: string;
 }
 
