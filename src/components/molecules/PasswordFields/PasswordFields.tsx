@@ -81,7 +81,7 @@ export default function PasswordFields({
           control={control}
           render={({ field, fieldState }) => {
             return (
-              <FormControl color="purple">
+              <FormControl color="purple" fullWidth>
                 <InputLabel
                   size="small"
                   htmlFor="outlined-basic-pwd"
@@ -141,7 +141,7 @@ export default function PasswordFields({
           control={control}
           render={({ field, fieldState }) => {
             return (
-              <FormControl color="purple">
+              <FormControl color="purple" fullWidth>
                 <InputLabel
                   size="small"
                   htmlFor="outlined-basic-pwd-confirm"

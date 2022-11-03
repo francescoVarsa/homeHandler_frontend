@@ -19,10 +19,10 @@ export default function IllustrationWithText({
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Grid item md={4} sm={8} xs={10}>
+        <Grid item lg={4} md={4} sm={8} xs={10}>
           {textColumn}
         </Grid>
-        <Grid item md={4} sm={8} xs={10}>
+        <Grid item lg={4} md={4} sm={8} xs={10}>
           {illustration}
         </Grid>
       </Grid>

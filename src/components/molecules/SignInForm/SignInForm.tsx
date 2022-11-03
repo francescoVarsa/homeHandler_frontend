@@ -83,7 +83,7 @@ export const SignInForm = forwardRef((_, ref) => {
             control={control}
             render={({ field, fieldState }) => {
               return (
-                <FormControl color="purple">
+                <FormControl color="purple" fullWidth>
                   <InputLabel
                     size="small"
                     htmlFor="outlined-basic-pwd"

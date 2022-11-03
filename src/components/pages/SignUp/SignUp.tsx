@@ -1,4 +1,5 @@
-import { useCallback, useState } from "react";
+import { useMediaQuery, useTheme } from "@mui/material";
+import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { authApi } from "../../../service/api/Auth";
@@ -25,6 +26,10 @@ export default function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState<string | undefined>();
+
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('lg'));
+  const formBackgroundWidth = useMemo(() => matches ? 20 : undefined, [matches])
 
   const handleRegistration = async ({
     email,
@@ -67,6 +72,7 @@ export default function SignUp() {
           borderThickness={1}
           borderColor={"purple"}
           rgbaColor={"rgb(16, 0, 43, 0.9)"}
+          widthPercentage={formBackgroundWidth}
         >
           <AuthForm formType="signUp" authHandler={handleRegistration} />
         </BlurredBackground>

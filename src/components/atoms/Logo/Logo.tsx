@@ -3,7 +3,7 @@ import { Colors } from "../../../types/types";
 
 type LogoProps = {
   height?: number;
-  width?: number;
+  width?: number | string;
   color?: Colors;
 };
 
