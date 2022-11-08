@@ -65,7 +65,7 @@ export default function PasswordFields({
 
   return (
     <>
-      <Grid item md={inlineFields ? 6 : 12} sm={12}>
+      <Grid item md={inlineFields ? 6 : 12} sm={12} xs={12}>
         <Controller
           name="password"
           rules={{
@@ -125,7 +125,7 @@ export default function PasswordFields({
           }}
         />
       </Grid>
-      <Grid item md={inlineFields ? 6 : 12} sm={12}>
+      <Grid item md={inlineFields ? 6 : 12} sm={12} xs={12}>
         <Controller
           name="confirmPassword"
           rules={{

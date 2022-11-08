@@ -16,7 +16,7 @@ export default function BlurredBackground({
   borderColor = "purple",
   borderThickness = 1,
   children,
-  widthPercentage = 30,
+  widthPercentage,
   neonEffect = true,
 }: BlurredBackgroundProps) {
   const theme = useTheme();
@@ -27,7 +27,7 @@ export default function BlurredBackground({
       top={"50%"}
       left={"50%"}
       padding={"30px 50px"}
-      width={`${widthPercentage}%`}
+      width={widthPercentage != null ? `${widthPercentage}%` : "auto"}
       className={`${styles["form-wrapper"]} ${
         neonEffect ? styles["form-wrapper__neon"] : ""
       }`}

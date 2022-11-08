@@ -8,6 +8,8 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { forwardRef, useCallback, useImperativeHandle, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -58,16 +60,19 @@ export const SignInForm = forwardRef((_, ref) => {
     [navigate]
   );
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <>
       <Grid item md={12} sx={{ padding: "0px!important" }}>
         <Title tag={"h5"} text={t("authPages:form-title-login")} />
       </Grid>
-      <Grid container spacing={2}>
-        <Grid item md={6} sm={12}>
+      <Grid container rowSpacing={matches ? 2 : 0} spacing={matches ? 0 : 2}>
+        <Grid item md={6} sm={12} xs={12}>
           <EmailInputField control={control} />
         </Grid>
-        <Grid item md={6} sm={12}>
+        <Grid item md={6} sm={12} xs={12}>
           <Controller
             name="password"
             rules={{

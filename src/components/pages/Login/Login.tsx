@@ -1,5 +1,4 @@
-import { useMediaQuery, useTheme } from "@mui/material";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { authApi } from "../../../service/api/Auth";
@@ -16,9 +15,6 @@ type LoginDataSchema = {
 export default function Login() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('lg'));
-  const formBackgroundWidth = useMemo(() => matches ? 20 : undefined, [matches])
 
   // Login api call
   const [loginTrigger, loginInfo] = authApi.useLoginMutation();
@@ -63,7 +59,6 @@ export default function Login() {
           borderThickness={1}
           borderColor={"purple"}
           rgbaColor={"rgb(16, 0, 43, 0.9)"}
-          widthPercentage={formBackgroundWidth}
         >
           <AuthForm formType="login" authHandler={handleLogin} />
         </BlurredBackground>

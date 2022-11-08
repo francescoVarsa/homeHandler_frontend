@@ -6,8 +6,6 @@ import {
   StepLabel,
   Stepper,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -38,10 +36,6 @@ export default function ResetPasswordStepper({
   const { t } = useTranslation();
   const [isStepFailed, setIsStepFailed] = useState(false);
 
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('lg'));
-  const formBackgroundWidth = useMemo(() => matches ? 25 : 45, [matches])
-
   const steps = useMemo(
     () => [
       t("resetPassword:step-label-1"),
@@ -57,8 +51,8 @@ export default function ResetPasswordStepper({
 
   return (
     <>
-      <QuestionMark />
-      <BlurredBackground widthPercentage={formBackgroundWidth}>
+      {/* <QuestionMark /> */}
+      <BlurredBackground>
         <Stepper
           activeStep={activeStep}
           connector={
@@ -101,7 +95,7 @@ export default function ResetPasswordStepper({
         {activeStep === steps.length ? (
           <>
             <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
+              All steps completed - you&apos;ve finished
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Box sx={{ flex: "1 1 auto" }} />

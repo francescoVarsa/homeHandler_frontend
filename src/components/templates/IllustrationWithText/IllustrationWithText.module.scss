@@ -1,0 +1,7 @@
+@import "./../../../styles/variables.scss";
+
+.main__box {
+   @media (max-width: $mobile){
+    margin-top: 10px!important;
+}
+}

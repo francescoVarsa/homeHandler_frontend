@@ -15,7 +15,7 @@ export default function AuthFormTemplate({ children }: AuthFormTemplateProps) {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Grid item md={6}>
+        <Grid item xs={12} sm={12} md={6}>
           <AuthIllustration color="lightPurple" />
           {children}
         </Grid>

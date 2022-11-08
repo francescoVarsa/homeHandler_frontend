@@ -45,7 +45,7 @@ export default function AuthForm({ formType, authHandler }: AuthFormProps) {
         <SignUpForm ref={signUpFormRef} />
       )}
 
-      <Grid item md={12}>
+      <Grid item md={12} xs={12}>
         <Link
           className={styles.link}
           to={formType === "login" ? "/signUp" : "/login"}
@@ -60,7 +60,7 @@ export default function AuthForm({ formType, authHandler }: AuthFormProps) {
           />{" "}
         </Link>
       </Grid>
-      <Grid item md={12} display={"flex"}>
+      <Grid item md={12} display={"flex"} xs={12}>
         <Button
           type={"submit"}
           variant={"outlined"}

@@ -101,7 +101,7 @@ export const SignUpForm = forwardRef((_, ref) => {
         <Title tag={"h5"} text={t("authPages:form-title-signUp")} />
       </Grid>
       <Grid container spacing={2}>
-        <Grid item md={6} sm={12}>
+        <Grid item md={6} sm={12} xs={12}>
           <Controller
             name="name"
             rules={{
@@ -122,7 +122,7 @@ export const SignUpForm = forwardRef((_, ref) => {
             }}
           />
         </Grid>
-        <Grid item md={6} sm={12}>
+        <Grid item md={6} sm={12} xs={12}>
           <Controller
             name="lastName"
             rules={{
@@ -147,10 +147,10 @@ export const SignUpForm = forwardRef((_, ref) => {
             }}
           />
         </Grid>
-        <Grid item md={12} sm={12}>
+        <Grid item md={12} sm={12} xs={12}>
           <EmailInputField control={control} />
         </Grid>
-        <Grid item md={6} sm={12}>
+        <Grid item md={6} sm={12} xs={12}>
           <Controller
             name="password"
             rules={{
@@ -210,7 +210,7 @@ export const SignUpForm = forwardRef((_, ref) => {
             }}
           />
         </Grid>
-        <Grid item md={6} sm={12}>
+        <Grid item md={6} sm={12} xs={12}>
           <Controller
             name="confirmPassword"
             rules={{

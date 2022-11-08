@@ -1,6 +1,13 @@
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import { CircularProgress, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import {
   forwardRef,
   useCallback,
@@ -196,8 +203,11 @@ export const ResetPasswordStep = forwardRef(
       }
     }, [error, setIsStepFailed]);
 
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down("sm"));
+
     return (
-      <Grid container mt={6} columnSpacing={4}>
+      <Grid container mt={6} columnSpacing={matches ? 0 : 4}>
         {isLoading ? (
           <Grid
             item
@@ -265,52 +275,48 @@ const StepRequestForm = ({
   setPasswordError,
 }: StepRequestFormProps) => {
   const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("sm"));
+
   const { t } = useTranslation();
 
   return (
-    <>
-      <Grid item md={6} paddingRight={2}>
+    <Grid container display={"flex"} rowSpacing={4}>
+      <Grid item md={6} xs={12} paddingRight={matches ? 0 : 2}>
         {/* Here goes the text that explain what the user need to do in this step */}
         <Typography color={theme.palette["white"].main}>
           {t(`resetPassword:step-${step}-info`)}
         </Typography>
       </Grid>
-      <Grid
-        item
-        md={6}
-        borderLeft={`1px solid ${theme.palette["purple"].main}`}
-      >
-        {/* Here there will be positioned text inputs contextually to the step operation */}
-        <Grid container item md={12} rowSpacing={step !== 0 ? 2 : 1}>
-          {step === 0 ? (
-            <EmailInputField control={control} />
-          ) : (
-            <>
-              <PasswordFields
-                watch={watchPassword}
-                clearErrors={clearPasswordErrors}
-                setError={setPasswordError}
-                control={resetPasswordControl}
-                inlineFields={false}
-              />
-            </>
-          )}
-        </Grid>
+      {/* Here there will be positioned text inputs contextually to the step operation */}
+      <Grid container item xs={12} md={12} rowSpacing={step !== 0 ? 2 : 1}>
+        {step === 0 ? (
+          <EmailInputField control={control} />
+        ) : (
+          <>
+            <PasswordFields
+              watch={watchPassword}
+              clearErrors={clearPasswordErrors}
+              setError={setPasswordError}
+              control={resetPasswordControl}
+              inlineFields={false}
+            />
+          </>
+        )}
       </Grid>
-    </>
+    </Grid>
   );
 };
 
 const ErrorComponent = ({ message }: { message: string }) => {
   return (
-    <Grid container item md={12} display={"flex"} rowSpacing={2}>
-      <Grid item md={12} textAlign={"center"}>
+    <Grid container item md={12} xs={12} display={"flex"} rowSpacing={2}>
+      <Grid item md={12} xs={12} textAlign={"center"}>
         <ErrorOutlineIcon
           color="error"
           sx={{ width: "120px", height: "auto" }}
         />
       </Grid>
-      <Grid item md={12} textAlign={"center"}>
+      <Grid item md={12} xs={12} textAlign={"center"}>
         <Typography color="error" fontWeight={600}>
           {message}
         </Typography>
@@ -323,14 +329,14 @@ const Completed = ({ step }: { step: number }) => {
   const theme = useTheme();
   const { t } = useTranslation();
   return (
-    <Grid container item md={12} display={"flex"} rowSpacing={2}>
-      <Grid item md={12} textAlign={"center"}>
+    <Grid container item md={12} xs={12} display={"flex"} rowSpacing={2}>
+      <Grid item md={12} xs={12} textAlign={"center"}>
         <CheckCircleOutlineIcon
           color="success"
           sx={{ width: "120px", height: "auto" }}
         />
       </Grid>
-      <Grid item md={12} textAlign={"center"}>
+      <Grid item md={12} xs={12} textAlign={"center"}>
         <Typography color={theme.palette["success"].main} fontWeight={600}>
           {step === 0
             ? t("resetPassword:email-sent")
