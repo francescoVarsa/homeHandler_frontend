@@ -1,5 +1,5 @@
-import { Grid } from "@mui/material";
-import { useMemo } from "react";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import Background from "../../atoms/backgrouds/Background/Background";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
@@ -17,6 +17,9 @@ export default function RequestNewPassword({ step }: RequestNewPasswordProps) {
     [navParams?.token]
   );
 
+  const theme = useTheme();
+  const lg = useMediaQuery(theme.breakpoints.up("lg"));
+
   return (
     <Background>
       <Grid
@@ -25,9 +28,9 @@ export default function RequestNewPassword({ step }: RequestNewPasswordProps) {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Grid item md={6}>
+        <Grid item md={6} sm={12}>
           <ProgressIllustration />
-          <BlurredBackground>
+          <BlurredBackground widthPercentage={lg ? 35 : 60}>
             <RequestNewPasswordForm />
           </BlurredBackground>
         </Grid>
