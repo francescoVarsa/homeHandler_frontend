@@ -1,9 +1,10 @@
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import Background from "../../atoms/backgrouds/Background/Background";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import ProgressIllustration from "../../atoms/Illustrations/ProgressIllustration";
+import { ChangePasswordForm } from "../../organisms/ChangePasswordForm/ChangePasswordForm";
 import RequestNewPasswordForm from "../../organisms/RequestNewPasswordForm/RequestNewPasswordForm";
 
 type RequestNewPasswordProps = {
@@ -31,7 +32,11 @@ export default function RequestNewPassword({ step }: RequestNewPasswordProps) {
         <Grid item md={6} sm={12}>
           <ProgressIllustration />
           <BlurredBackground widthPercentage={lg ? 35 : 60}>
-            <RequestNewPasswordForm />
+            {!resetValidationToken ? (
+              <RequestNewPasswordForm />
+            ) : (
+              <ChangePasswordForm token={resetValidationToken} />
+            )}
           </BlurredBackground>
         </Grid>
       </Grid>

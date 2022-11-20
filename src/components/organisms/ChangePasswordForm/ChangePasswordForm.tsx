@@ -1,44 +1,47 @@
 import {
+  Box,
   Button,
   CircularProgress,
   Grid,
   Typography,
   useTheme,
-  Box,
 } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { authApi } from "../../../service/api/Auth";
-import EmailInputField from "../../molecules/EmailInputField/EmailInputField";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import PasswordFields from "../../molecules/PasswordFields/PasswordFields";
 
-export default function RequestNewPasswordForm() {
+type ChangePasswordFormProps = { token: string };
+
+export function ChangePasswordForm({ token }: ChangePasswordFormProps) {
   const { t } = useTranslation();
   const theme = useTheme();
-  const { control, handleSubmit } = useForm({ defaultValues: { email: "" } });
+  const { control, handleSubmit, watch, clearErrors, setError } = useForm({
+    defaultValues: { password: "", confirmPassword: "" },
+  });
   const navigate = useNavigate();
-  const [sendTrigger] = authApi.useSendResetPasswordEmailMutation();
+  const [changePwdTrigger] = authApi.useResetPasswordMutation();
   const [status, setStatus] = useState<
     "neutral" | "loading" | "success" | "error"
   >("neutral");
 
   const onSubmit = useCallback(
-    async (formValue: { email: string }) => {
+    async (formValue: { password: string; confirmPassword: string }) => {
       try {
         setStatus("loading");
-        await sendTrigger({
-          username: formValue.email,
-        }).unwrap();
+        const payload = { token, new_password: formValue.password };
+        await changePwdTrigger(payload).unwrap();
         setStatus("success");
       } catch (error) {
         setStatus("error");
         console.log(error);
       }
     },
-    [sendTrigger]
+    [changePwdTrigger, token]
   );
 
   const goBackToLogin = useCallback(() => {
@@ -52,7 +55,7 @@ export default function RequestNewPasswordForm() {
           variant="h3"
           sx={{ color: `${theme.palette["purple"].main}!important` }}
         >
-          {t("resetPassword:send-email-title")}
+          {t("resetPassword:change-pwd-title")}
         </Typography>
       </Grid>
       <Grid item container xs={12} rowSpacing={2} columnSpacing={2}>
@@ -60,11 +63,17 @@ export default function RequestNewPasswordForm() {
           <>
             <Grid item xs={12} sm={6}>
               <Typography variant="body1" sx={{ color: "white!important" }}>
-                {t("resetPassword:send-email-help")}
+                {t("resetPassword:change-pwd-description")}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <EmailInputField control={control} />
+              <PasswordFields
+                inlineFields={false}
+                watch={watch}
+                setError={setError}
+                clearErrors={clearErrors}
+                control={control}
+              />
             </Grid>
           </>
         )}
@@ -87,7 +96,7 @@ export default function RequestNewPasswordForm() {
                 variant="body1"
                 sx={{ color: `${theme.palette.success.main}` }}
               >
-                {t("resetPassword:send-success-message")}
+                {t("resetPassword:change-pwd-success")}
               </Typography>
             </Box>
           </Grid>
@@ -111,7 +120,7 @@ export default function RequestNewPasswordForm() {
                 variant="body1"
                 sx={{ color: `${theme.palette.error.main}` }}
               >
-                {t("resetPassword:send-fail-message")}
+                {t("resetPassword:change-pwd-error")}
               </Typography>
             </Box>
           </Grid>

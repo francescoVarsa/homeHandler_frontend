@@ -141,7 +141,11 @@ export default function PasswordFields({
           control={control}
           render={({ field, fieldState }) => {
             return (
-              <FormControl color="purple" fullWidth>
+              <FormControl
+                color="purple"
+                fullWidth
+                sx={{ marginTop: !inlineFields ? 2 : 0 }}
+              >
                 <InputLabel
                   size="small"
                   htmlFor="outlined-basic-pwd-confirm"
