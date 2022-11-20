@@ -1,4 +1,5 @@
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { relative } from "path";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import Background from "../../atoms/backgrouds/Background/Background";
@@ -6,12 +7,9 @@ import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredB
 import ProgressIllustration from "../../atoms/Illustrations/ProgressIllustration";
 import { ChangePasswordForm } from "../../organisms/ChangePasswordForm/ChangePasswordForm";
 import RequestNewPasswordForm from "../../organisms/RequestNewPasswordForm/RequestNewPasswordForm";
+import MainTemplate from "../../templates/MainTemplate/MainTemplate";
 
-type RequestNewPasswordProps = {
-  step?: number;
-};
-
-export default function RequestNewPassword({ step }: RequestNewPasswordProps) {
+export default function RequestNewPassword() {
   const navParams = useParams();
   const resetValidationToken = useMemo(
     () => navParams?.token,
@@ -22,24 +20,34 @@ export default function RequestNewPassword({ step }: RequestNewPasswordProps) {
   const lg = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
-    <Background>
-      <Grid
-        container
+    <MainTemplate>
+      <Box
         display={"flex"}
+        flex={1}
         alignItems={"center"}
         justifyContent={"center"}
+        bgcolor={theme.palette.darkBlue.main}
+        position={"relative"}
       >
-        <Grid item md={6} sm={12}>
+        <Box
+          alignItems={"center"}
+          flex={1}
+          position={"absolute"}
+          top={0}
+          bottom={0}
+          right={0}
+          left={0}
+        >
           <ProgressIllustration />
-          <BlurredBackground widthPercentage={lg ? 35 : 60}>
-            {!resetValidationToken ? (
-              <RequestNewPasswordForm />
-            ) : (
-              <ChangePasswordForm token={resetValidationToken} />
-            )}
-          </BlurredBackground>
-        </Grid>
-      </Grid>
-    </Background>
+        </Box>
+        <BlurredBackground>
+          {!resetValidationToken ? (
+            <RequestNewPasswordForm />
+          ) : (
+            <ChangePasswordForm token={resetValidationToken} />
+          )}
+        </BlurredBackground>
+      </Box>
+    </MainTemplate>
   );
 }

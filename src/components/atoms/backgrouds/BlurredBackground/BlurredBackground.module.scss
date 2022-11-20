@@ -1,14 +1,19 @@
 @import "./../../../../styles/variables.scss";
 
 .form-wrapper {
-  transform: translate(-50%, -50%);
   backdrop-filter: blur(15px);
+  width: 35%;
+
+  @media (max-width: $desktop) {
+    width: 60%;
+  }
+
+  @media (max-width: $tablet) {
+    width: 70%;
+  }
 
   @media (max-width: $mobile) {
-    max-width: 90vw!important;
-    width: 80%!important;
-    padding: 30px 20px !important;
-    min-width: 0;
+    width: calc(80vw - 60px);
   }
 
   &__neon {

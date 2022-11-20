@@ -56,10 +56,7 @@ export default function Router() {
           <Route path={login} element={<Login />} />
           <Route path={signUp} element={<SignUp />} />
           <Route path={requestResetPassword} element={<RequestNewPassword />} />
-          <Route
-            path={resetPassword}
-            element={<RequestNewPassword step={1} />}
-          />
+          <Route path={resetPassword} element={<RequestNewPassword />} />
         </Route>
 
         <Route path={home} element={<ProtectedRoutes />}>

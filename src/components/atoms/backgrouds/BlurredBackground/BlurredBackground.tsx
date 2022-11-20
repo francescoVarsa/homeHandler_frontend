@@ -22,12 +22,8 @@ export default function BlurredBackground({
   const theme = useTheme();
   return (
     <Box
-      position={"absolute"}
       bgcolor={rgbaColor}
-      top={"50%"}
-      left={"50%"}
-      padding={"30px 50px"}
-      width={widthPercentage != null ? `${widthPercentage}%` : "auto"}
+      padding={"50px 30px"}
       className={`${styles["form-wrapper"]} ${
         neonEffect ? styles["form-wrapper__neon"] : ""
       }`}
