@@ -5,6 +5,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { Home } from "../components/pages/Home/Home";
 import LandingPage from "../components/pages/LandingPage/LandingPage";
 import Login from "../components/pages/Login/Login";
 import NotFound from "../components/pages/NotFound/NotFound";
@@ -44,6 +45,7 @@ export default function Router() {
     signUp,
     requestResetPassword,
     resetPassword,
+    start,
   } = routes;
 
   return (
@@ -60,13 +62,9 @@ export default function Router() {
         </Route>
 
         <Route path={home} element={<ProtectedRoutes />}>
-          <Route path={home_dashboard} element={<Dashboard />} />
+          <Route path={start} element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-
-const Dashboard = () => {
-  return <div>This is dashboard</div>;
-};

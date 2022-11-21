@@ -7,6 +7,7 @@ export const routes = {
   signUp: "/signUp",
   home: "/home",
   home_dashboard: "/home/dashboard",
+  start: "/home/start",
   requestResetPassword: "requestResetPassword",
   resetPassword: "/passwordReset/:token",
 };

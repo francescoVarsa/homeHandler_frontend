@@ -40,7 +40,7 @@ export default function Login() {
   };
 
   const onFeedBackClose = useCallback(
-    () => navigate("/home/dashboard"),
+    () => navigate("/home/start"),
     [navigate]
   );
 
