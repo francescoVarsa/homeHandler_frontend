@@ -1,5 +1,4 @@
-import { Grid } from "@mui/material";
-import Background from "../../atoms/backgrouds/Background/Background";
+import { Box, useTheme } from "@mui/material";
 import AuthIllustration from "../../atoms/Illustrations/AuthIllustration";
 import MainTemplate from "../MainTemplate/MainTemplate";
 
@@ -8,21 +7,31 @@ type AuthFormTemplateProps = {
 };
 
 export default function AuthFormTemplate({ children }: AuthFormTemplateProps) {
+  const theme = useTheme();
+
   return (
     <MainTemplate>
-      <Background>
-        <Grid
-          container
-          display={"flex"}
+      <Box
+        display={"flex"}
+        flex={1}
+        alignItems={"center"}
+        justifyContent={"center"}
+        bgcolor={theme.palette.darkBlue.main}
+        position={"relative"}
+      >
+        <Box
           alignItems={"center"}
-          justifyContent={"center"}
+          flex={1}
+          position={"absolute"}
+          top={0}
+          bottom={0}
+          right={0}
+          left={0}
         >
-          <Grid item xs={12} sm={12} md={6}>
-            <AuthIllustration color="lightPurple" />
-            {children}
-          </Grid>
-        </Grid>
-      </Background>
+          <AuthIllustration color="lightPurple" />
+        </Box>
+        {children}
+      </Box>
     </MainTemplate>
   );
 }

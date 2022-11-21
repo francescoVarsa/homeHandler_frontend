@@ -1,8 +1,9 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { FormEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import Button from "../../atoms/Button/Button";
+import Logo from "../../atoms/Logo/Logo";
 import Paragraph from "../../atoms/Paragraph/Paragraph";
 import { SignInForm } from "../../molecules/SignInForm/SignInForm";
 import { SignUpForm } from "../../molecules/SignUpForm/SignUpForm";
@@ -39,6 +40,11 @@ export default function AuthForm({ formType, authHandler }: AuthFormProps) {
       spacing={0}
       rowGap={4}
     >
+      <Grid item xs={12} display={"flex"} justifyContent={"center"}>
+        <Box>
+          <Logo color="lightPurple" />
+        </Box>
+      </Grid>
       {formType === "login" ? (
         <SignInForm ref={loginFormRef} />
       ) : (

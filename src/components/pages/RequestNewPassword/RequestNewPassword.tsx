@@ -1,8 +1,6 @@
-import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
-import { relative } from "path";
+import { Box, useTheme } from "@mui/material";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import Background from "../../atoms/backgrouds/Background/Background";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import ProgressIllustration from "../../atoms/Illustrations/ProgressIllustration";
 import { ChangePasswordForm } from "../../organisms/ChangePasswordForm/ChangePasswordForm";
@@ -17,7 +15,6 @@ export default function RequestNewPassword() {
   );
 
   const theme = useTheme();
-  const lg = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <MainTemplate>
