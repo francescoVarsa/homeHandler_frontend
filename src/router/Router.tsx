@@ -1,3 +1,4 @@
+import { useCookies } from "react-cookie";
 import {
   BrowserRouter,
   Navigate,
@@ -17,8 +18,10 @@ import { store } from "./../redux/store";
 const ProtectedRoutes = () => {
   const authToken = store.getState();
   const { user } = authToken;
+  const [cookies] = useCookies(["auth-token"]);
+  const storedToken = cookies["auth-token"];
 
-  if (!user.token) {
+  if (!user.token && !storedToken) {
     return <Navigate to="/login" />;
   }
 
@@ -26,11 +29,13 @@ const ProtectedRoutes = () => {
 };
 
 const AuthFlow = () => {
+  const [cookies] = useCookies(["auth-token"]);
+  const storedToken = cookies["auth-token"];
   const authToken = store.getState();
   const { user } = authToken;
 
-  if (user.token) {
-    return <Navigate to="/home/dashboard" />;
+  if (user.token || storedToken) {
+    return <Navigate to="/home/start" />;
   }
 
   return <Outlet />;
@@ -39,7 +44,6 @@ const AuthFlow = () => {
 export default function Router() {
   const {
     home,
-    home_dashboard,
     landingPage,
     login,
     signUp,
