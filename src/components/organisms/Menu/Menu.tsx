@@ -70,7 +70,9 @@ const MenuItem = ({ icon, label, onClickHandler }: MenuItemProps) => {
   return (
     <li>
       <a href="/">
-        <span className={styles.icon}>{menuIcon}</span>
+        <Box className={styles.icon}>
+          <div>{menuIcon}</div>
+        </Box>
         <span className={styles.title}>{label}</span>
       </a>
     </li>
