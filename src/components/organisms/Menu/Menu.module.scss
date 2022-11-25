@@ -15,8 +15,16 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: 0.5s;
 
+    @media (max-width: $mobile) {
+      width: 50px;
+    }
+
     &.active {
       width: 300px;
+
+      @media (max-width: $mobile) {
+        width: 200px;
+      }
     }
 
     ul {
@@ -63,6 +71,13 @@
           align-items: center;
           justify-content: center;
 
+          @media (max-width: $mobile) {
+            min-width: 50px;
+            height: 30px;
+            line-height: 60px;
+            width: 50px;
+          }
+
           div {
             transition: 0.5s;
             background-color: $dark;
@@ -72,10 +87,18 @@
             align-items: center;
             justify-content: center;
             border: 1px solid $light-purple;
+
+            @media (max-width: $mobile) {
+              padding: 3px;
+            }
           }
 
           .icon__component {
             font-size: 24px;
+
+            @media (max-width: $mobile) {
+              font-size: 20px;
+            }
           }
         }
 
@@ -85,6 +108,11 @@
           height: 60px;
           line-height: 60px;
           white-space: nowrap;
+
+          @media (max-width: $mobile) {
+            height: 60px;
+            line-height: 30px;
+          }
         }
       }
     }

@@ -35,9 +35,9 @@ export function Home({}: HomeProps) {
           p={2}
         >
           <Menu options={menuOptions} />
-          <Box>
+          <Grid item xs={6} md={2}>
             <Logo color={"lightPurple"} />
-          </Box>
+          </Grid>
         </Grid>
         <Grid container mt={2}>
           <Grid item xs={12} md={8} px={2}></Grid>
