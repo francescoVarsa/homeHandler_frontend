@@ -1,14 +1,15 @@
 import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import { cloneElement, useCallback, useState } from "react";
-import { createPortal } from "react-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Menu.module.scss";
 
 type MenuOption = {
   label: string;
   icon: JSX.Element;
   onClickHandler?: Function;
+  linkTo: string;
 };
 
 type MenuProps = {
@@ -19,62 +20,80 @@ type MenuItemProps = {
   icon: JSX.Element;
   label: string;
   onClickHandler: Function;
+  selectedItem: string;
+  link: string;
 };
 
 export function Menu({ options }: MenuProps) {
+  const location = useLocation();
   const [isActive, setIsActive] = useState(false);
-  const [selected, setSelected] = useState(options[0]["label"]);
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("sm"));
+  const [selected, setSelected] = useState(
+    location.state ?? options[0]["label"]
+  );
+  const navigate = useNavigate();
 
   const toggleActivation = useCallback(
     () => setIsActive(!isActive),
     [isActive]
   );
 
-  const onClickHandler = useCallback((item: string) => setSelected(item), []);
+  const onClickHandler = useCallback(
+    (link: string, item: string) => {
+      setSelected(item);
+      navigate(link, { state: item });
+    },
+    [navigate]
+  );
 
-  return createPortal(
-    <Box position={"absolute"} top={0} left={matches ? 0 : 30}>
-      <Box className={styles.container}>
-        <Box
-          className={`${styles.navigation} ${isActive ? styles.active : ""}`}
-        >
-          <ul>
-            {options.map((option) => (
-              <MenuItem
-                key={option.label}
-                icon={option.icon}
-                label={option.label}
-                onClickHandler={onClickHandler}
-              />
-            ))}
-          </ul>
-        </Box>
-        <Box onClick={toggleActivation} className={styles.toggle}>
-          {isActive ? (
-            <ArrowBackIosRoundedIcon sx={{ fontSize: "26px" }} />
-          ) : (
-            <ArrowForwardIosRoundedIcon sx={{ fontSize: "26px" }} />
-          )}
-        </Box>
+  return (
+    <Box className={styles.container}>
+      <Box className={`${styles.navigation} ${isActive ? styles.active : ""}`}>
+        <ul>
+          {options.map((option) => (
+            <MenuItem
+              key={option.label}
+              icon={option.icon}
+              label={option.label}
+              onClickHandler={onClickHandler}
+              selectedItem={selected}
+              link={option.linkTo}
+            />
+          ))}
+        </ul>
       </Box>
-    </Box>,
-    document.body
+      <Box onClick={toggleActivation} className={styles.toggle}>
+        {isActive ? (
+          <ArrowBackIosRoundedIcon sx={{ fontSize: "26px" }} />
+        ) : (
+          <ArrowForwardIosRoundedIcon sx={{ fontSize: "26px" }} />
+        )}
+      </Box>
+    </Box>
   );
 }
 
-const MenuItem = ({ icon, label, onClickHandler }: MenuItemProps) => {
+const MenuItem = ({
+  icon,
+  label,
+  onClickHandler,
+  selectedItem,
+  link,
+}: MenuItemProps) => {
   const menuIcon = cloneElement(icon, { className: styles.icon__component });
 
   return (
     <li>
-      <a href="/">
+      <div
+        className={styles.nav__item}
+        onClick={() => onClickHandler(link, label)}
+      >
         <Box className={styles.icon}>
-          <div>{menuIcon}</div>
+          <div className={selectedItem === label ? styles.active : ""}>
+            {menuIcon}
+          </div>
         </Box>
         <span className={styles.title}>{label}</span>
-      </a>
+      </div>
     </li>
   );
 };
