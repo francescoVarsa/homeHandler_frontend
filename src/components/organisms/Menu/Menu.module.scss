@@ -152,3 +152,136 @@
     top: calc(50% - 22.5px);
   }
 }
+
+.container__mobile {
+  background-color: $dark-violet;
+  height: 50px;
+  border-radius: 10px;
+  position: relative;
+
+  .menu__mobile__button {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    top: -20px;
+    left: calc(50% - 20px);
+    border-radius: 50%;
+    background-color: $dark-violet;
+    border: 5px solid $dark;
+    color: $light-purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu__mobile__content {
+    position: absolute;
+    background-color: $dark-violet;
+    width: 100%;
+    border-radius: 20px;
+    left: 0;
+    // Push the content outside the screen to create a slide in effect on click the activaiton button
+    top: 300px;
+    height: 300px;
+    padding-top: 20px;
+    transition: 0.5s;
+
+    &.active__mobile__menu {
+      top: -330px;
+    }
+  }
+
+  li {
+    position: relative;
+    list-style: none;
+    width: 100%;
+    margin-left: 20px;
+
+    &:hover {
+      .nav__item {
+        .icon {
+          div {
+            box-shadow: 0px 0px 8px 5px $light-purple,
+              inset 0 0 15px -4px rgb(255 255 255 / 20%);
+            padding: 13px;
+          }
+        }
+      }
+    }
+
+    .nav__item {
+      position: relative;
+      display: block;
+      width: 100%;
+      display: flex;
+      text-decoration: none;
+      color: $light-purple;
+      font-weight: 500;
+      text-align: center;
+
+      .icon {
+        position: relative;
+        display: block;
+        min-width: 80px;
+        height: 60px;
+        line-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media (max-width: $mobile) {
+          min-width: 50px;
+          height: 30px;
+          line-height: 60px;
+          width: 50px;
+        }
+
+        div {
+          transition: 0.5s;
+          background-color: $dark;
+          border-radius: 50%;
+          padding: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
+          @media (max-width: $mobile) {
+            padding: 3px;
+          }
+
+          &.active {
+            box-shadow: 0px 0px 8px 5px $light-purple,
+              inset 0 0 15px -4px rgb(255 255 255 / 20%);
+            padding: 13px;
+
+            @media (max-width: $mobile) {
+              padding: 4px;
+            }
+          }
+        }
+
+        .icon__component {
+          font-size: 24px;
+
+          @media (max-width: $mobile) {
+            font-size: 20px;
+          }
+        }
+      }
+
+      .title {
+        position: relative;
+        display: block;
+        height: 60px;
+        line-height: 60px;
+        white-space: nowrap;
+
+        @media (max-width: $mobile) {
+          height: 60px;
+          line-height: 30px;
+        }
+      }
+    }
+  }
+}

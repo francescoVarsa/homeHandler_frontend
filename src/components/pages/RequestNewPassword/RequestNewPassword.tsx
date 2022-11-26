@@ -17,7 +17,7 @@ export default function RequestNewPassword() {
   const theme = useTheme();
 
   return (
-    <MainTemplate>
+    <MainTemplate hasHeaderLogo={false} hasMenu={false}>
       <Box
         display={"flex"}
         flex={1}

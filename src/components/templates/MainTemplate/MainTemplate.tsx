@@ -1,6 +1,5 @@
-import { Box, Grid, useTheme } from "@mui/material";
+import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
 import Logo from "../../atoms/Logo/Logo";
-import Header from "../../organisms/Header/Header";
 import { Menu } from "../../organisms/Menu/Menu";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
@@ -9,12 +8,14 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 
 type MainTemplateProps = {
   children: JSX.Element | JSX.Element[];
-  hasHeader?: boolean;
+  hasHeaderLogo?: boolean;
+  hasMenu?: boolean;
 };
 
 export default function MainTemplate({
   children,
-  hasHeader = false,
+  hasHeaderLogo = false,
+  hasMenu = true,
 }: MainTemplateProps) {
   const theme = useTheme();
   const menuOptions = [
@@ -28,6 +29,8 @@ export default function MainTemplate({
     { label: "Sign out", icon: <LogoutRoundedIcon />, linkTo: "/home/start" },
   ];
 
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+
   return (
     <Box
       minHeight={"100vh"}
@@ -35,7 +38,6 @@ export default function MainTemplate({
       display={"flex"}
       flexDirection={"column"}
     >
-      {hasHeader && <Header />}
       <Box display={"flex"} flex={1} overflow={"hidden"}>
         <Box
           bgcolor={theme.palette["darkBlue"].main}
@@ -51,15 +53,46 @@ export default function MainTemplate({
             width={"100%"}
             p={2}
           >
-            <Grid item xs={6} md={2}>
-              <Logo color={"lightPurple"} />
-            </Grid>
+            {hasHeaderLogo && (
+              <Grid item xs={6} md={2}>
+                <Logo color={"lightPurple"} />
+              </Grid>
+            )}
           </Grid>
           <Grid container p={2} display={"flex"} flex={1}>
-            <Grid item xs={12} display={"flex"} flex={1}>
-              <Menu options={menuOptions} />
-              {children}
-            </Grid>
+            {matches ? (
+              <Grid item xs={12} display={"flex"} flex={1} gap={2}>
+                {hasMenu && <Menu options={menuOptions} />}
+                <Box display={"flex"} flex={1}>
+                  {children}
+                </Box>
+              </Grid>
+            ) : (
+              <>
+                <Grid
+                  item
+                  xs={12}
+                  display={"flex"}
+                  flex={1}
+                  position={"relative"}
+                >
+                  <Box
+                    display={"flex"}
+                    flex={1}
+                    flexDirection={"column"}
+                    gap={"30px"}
+                  >
+                    <Box display={"flex"} flex={9}>
+                      {children}
+                    </Box>
+
+                    {hasMenu && (
+                      <Menu options={menuOptions} isMobileVersion={true} />
+                    )}
+                  </Box>
+                </Grid>
+              </>
+            )}
           </Grid>
         </Box>
       </Box>

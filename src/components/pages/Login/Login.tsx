@@ -23,7 +23,7 @@ export default function Login() {
   const [showDialog, setShowDialog] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState<string | undefined>();
-  const [, setCookie] = useCookies(["auth-token"]);
+  const [cookie, setCookie] = useCookies(["auth-token"]);
 
   const handleLogin = async ({ username, password }: LoginDataSchema) => {
     const credentials = { username, password };
@@ -31,8 +31,14 @@ export default function Login() {
     setShowDialog(true);
     try {
       const response = await loginTrigger(credentials).unwrap();
-      // 24 hours of validity
-      setCookie("auth-token", response.token, { maxAge: 86400 });
+
+      const tokenInCookies = cookie["auth-token"];
+
+      if (!tokenInCookies) {
+        // 24 hours of validity
+        setCookie("auth-token", response.token, { maxAge: 86400 });
+      }
+
       setIsLoading(loginInfo.isLoading);
       setIsSuccess(true);
       setMessage(t("authPages:feedback-login-success"));

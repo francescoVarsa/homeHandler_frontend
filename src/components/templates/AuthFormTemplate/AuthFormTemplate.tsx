@@ -10,7 +10,7 @@ export default function AuthFormTemplate({ children }: AuthFormTemplateProps) {
   const theme = useTheme();
 
   return (
-    <MainTemplate>
+    <MainTemplate hasHeaderLogo={false} hasMenu={false}>
       <Box
         display={"flex"}
         flex={1}

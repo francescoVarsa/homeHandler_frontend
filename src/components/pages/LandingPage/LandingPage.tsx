@@ -5,7 +5,7 @@ import MainTemplate from "../../templates/MainTemplate/MainTemplate";
 
 export default function LandingPage() {
   return (
-    <MainTemplate>
+    <MainTemplate hasHeaderLogo={false} hasMenu={false}>
       <IllustrationWithText
         illustration={<ControlPanelIllustration />}
         textColumn={<LandingPageCallToAction />}

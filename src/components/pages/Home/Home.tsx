@@ -3,7 +3,7 @@ import MainTemplate from "../../templates/MainTemplate/MainTemplate";
 export function Home() {
   return (
     <MainTemplate>
-      <div>ciao</div>
+      <div></div>
     </MainTemplate>
   );
 }
