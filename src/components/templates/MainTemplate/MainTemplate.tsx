@@ -5,6 +5,7 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 type MainTemplateProps = {
   children: JSX.Element | JSX.Element[];
@@ -29,17 +30,39 @@ export default function MainTemplate({
     { label: "Sign out", icon: <LogoutRoundedIcon />, linkTo: "/home/start" },
   ];
 
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
+  const [viewPortHeight, setViewPortHeight] = useState(0);
+
+  useEffect(() => {
+    const documentHeight = () => {
+      const doc = document.documentElement;
+      doc.style.setProperty("--doc-height", `${window.innerHeight}px`);
+      setViewPortHeight(window.innerHeight);
+    };
+    window.addEventListener("resize", documentHeight);
+    documentHeight();
+
+    return () => window.removeEventListener("resize", documentHeight);
+  }, []);
 
   return (
     <Box
-      minHeight={"100vh"}
+      height={viewPortHeight}
       width={"100vw"}
       display={"flex"}
       flexDirection={"column"}
     >
-      <Box display={"flex"} flex={1} overflow={"hidden"}>
+      <Box
+        display={"flex"}
+        minHeight={0}
+        minWidth={0}
+        flex={1}
+        overflow={"hidden"}
+      >
         <Box
+          minHeight={0}
+          minWidth={0}
           bgcolor={theme.palette["darkBlue"].main}
           flex={1}
           display={"flex"}
@@ -47,6 +70,8 @@ export default function MainTemplate({
           flexDirection={"column"}
         >
           <Grid
+            minHeight={0}
+            minWidth={0}
             container
             display={"flex"}
             justifyContent={"center"}
@@ -59,9 +84,25 @@ export default function MainTemplate({
               </Grid>
             )}
           </Grid>
-          <Grid container p={2} display={"flex"} flex={1}>
+          <Grid
+            container
+            p={2}
+            minHeight={0}
+            minWidth={0}
+            display={"flex"}
+            flex={1}
+            overflow={"auto"}
+          >
             {matches ? (
-              <Grid item xs={12} display={"flex"} flex={1} gap={2}>
+              <Grid
+                item
+                xs={12}
+                display={"flex"}
+                minHeight={0}
+                minWidth={0}
+                flex={1}
+                gap={2}
+              >
                 {hasMenu && <Menu options={menuOptions} />}
                 <Box display={"flex"} flex={1}>
                   {children}
@@ -74,26 +115,29 @@ export default function MainTemplate({
                   xs={12}
                   display={"flex"}
                   flex={1}
-                  position={"relative"}
+                  minHeight={0}
+                  minWidth={0}
                 >
                   <Box
                     display={"flex"}
                     flex={1}
+                    minHeight={0}
+                    minWidth={0}
                     flexDirection={"column"}
-                    gap={"30px"}
                   >
-                    <Box display={"flex"} flex={9}>
+                    <Box display={"flex"} minHeight={0} minWidth={0} flex={1}>
                       {children}
                     </Box>
-
-                    {hasMenu && (
-                      <Menu options={menuOptions} isMobileVersion={true} />
-                    )}
                   </Box>
                 </Grid>
               </>
             )}
           </Grid>
+          {!matches && hasMenu && (
+            <Box px={2} width={"calc(100% - 32px)"} pb={2}>
+              <Menu options={menuOptions} isMobileVersion={true} />
+            </Box>
+          )}
         </Box>
       </Box>
     </Box>
