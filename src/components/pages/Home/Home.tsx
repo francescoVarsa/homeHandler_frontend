@@ -13,7 +13,7 @@ export function Home() {
           <GlassCard imgType="food" color1="#03a9f4" color2="#ff0058" />
         </Grid>
         <Grid item md={4} xs={12}>
-          <GlassCard imgType="gym" color1="#4dff03" color2="#00d0ff" />
+          <GlassCard imgType="gold" color1="#4dff03" color2="#00d0ff" />
         </Grid>
       </Grid>
     </MainTemplate>

@@ -1,12 +1,10 @@
 import { Box } from "@mui/material";
 import styles from "./GlassCard.module.scss";
-import GymImg from "./../../../static/images/gym_card.png";
-import FoodImg from "./../../../static/images/food_card.png";
 
 type GlassCardProps = {
   color1?: string;
   color2?: string;
-  imgType: "food" | "gym";
+  imgType: "food" | "gym" | "gold";
 };
 
 export function GlassCard({
@@ -42,6 +40,11 @@ export function GlassCard({
             {imgType === "food" && (
               <div
                 className={`${styles.card__img} ${styles.card__img__food}`}
+              />
+            )}
+            {imgType === "gold" && (
+              <div
+                className={`${styles.card__img} ${styles.card__img__gold}`}
               />
             )}
           </Box>
