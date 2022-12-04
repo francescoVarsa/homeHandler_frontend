@@ -1,3 +1,5 @@
+@import "./../../../styles/variables.scss";
+
 .container {
   display: flex;
   justify-content: center;
@@ -26,7 +28,6 @@
       border-radius: 8px;
       transform: skewX(15deg);
       transition: 0.5s;
-      //   background: linear-gradient(315deg, #ffbc00, #ff0058);
 
       &:hover {
         transform: skew(0deg);
@@ -46,7 +47,6 @@
       transition: 0.5s;
       filter: blur(30px);
       transition: 0.5s;
-      //   background: linear-gradient(315deg, #ffbc00, #ff0058);
     }
 
     &:hover:before,
@@ -76,6 +76,12 @@
       .content {
         left: -25px;
         padding: 60px 40px;
+
+        .card__img__wrapper {
+          .card__img {
+            opacity: 0;
+          }
+        }
       }
     }
 
@@ -136,9 +142,33 @@
       transition: 0.5s;
       color: #fff;
 
+      .card__img__wrapper {
+        position: relative;
+
+        .card__img {
+          transition: 1s;
+          opacity: 1;
+          width: 250px;
+          height: 250px;
+          position: absolute;
+          top: -60px;
+          left: 10px;
+
+          &__gym {
+            background-image: url("./../../../static/images/gym_card.png");
+            background-size: cover;
+          }
+
+          &__food {
+            background-image: url("./../../../static/images/food_card.png");
+            background-size: cover;
+          }
+        }
+      }
+
       h2 {
         font-size: 2em;
-        color: #fff;
+        color: $purple;
         margin-bottom: 10px;
         font-weight: 600;
       }

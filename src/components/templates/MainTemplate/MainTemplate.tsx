@@ -1,11 +1,11 @@
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
 import Logo from "../../atoms/Logo/Logo";
 import { Menu } from "../../organisms/Menu/Menu";
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import { useEffect, useLayoutEffect, useState } from "react";
 
 type MainTemplateProps = {
   children: JSX.Element | JSX.Element[];
