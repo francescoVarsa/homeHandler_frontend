@@ -10,4 +10,12 @@ export const routes = {
   start: "/home/start",
   requestResetPassword: "requestResetPassword",
   resetPassword: "/passwordReset/:token",
+
+  api: {
+    baseUrl: process.env.NODE_ENV === "development" ? "/v1/" : "/service/v1/",
+    signIn: "signIn",
+    signUp: "signUp",
+    saveNewPassword: "saveNewPassword",
+    resetPassword: "resetPassword",
+  },
 };

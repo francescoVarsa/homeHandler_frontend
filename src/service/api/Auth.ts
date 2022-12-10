@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { routes } from "../../config/RoutesMap";
 interface RequestPayload {
   username: string;
   password: string;
@@ -35,11 +36,11 @@ interface ResetPasswordResponse {
 export const authApi = createApi({
   reducerPath: "authApi",
   tagTypes: ["Auth"],
-  baseQuery: fetchBaseQuery({ baseUrl: "/v1/", mode: "cors" }),
+  baseQuery: fetchBaseQuery({ baseUrl: routes.api.baseUrl, mode: "cors" }),
   endpoints: (builder) => ({
     login: builder.mutation<Response, RequestPayload>({
       query: (body) => ({
-        url: "signIn",
+        url: routes.api.signIn,
         method: "POST",
         body,
       }),
@@ -47,7 +48,7 @@ export const authApi = createApi({
     }),
     signUp: builder.mutation<Response, SignUpPayload>({
       query: (body) => ({
-        url: "signUp",
+        url: routes.api.signUp,
         method: "POST",
         body,
       }),
@@ -57,14 +58,14 @@ export const authApi = createApi({
       RequestResetPasswordPayload
     >({
       query: (body) => ({
-        url: "resetPassword",
+        url: routes.api.resetPassword,
         method: "POST",
         body,
       }),
     }),
     resetPassword: builder.mutation<ResetPasswordResponse, ResetPassword>({
       query: (body) => ({
-        url: "saveNewPassword",
+        url: routes.api.saveNewPassword,
         method: "POST",
         body,
       }),
