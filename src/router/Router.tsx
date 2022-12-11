@@ -53,7 +53,7 @@ export default function Router() {
   } = routes;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="*" element={<NotFound />} />
 
