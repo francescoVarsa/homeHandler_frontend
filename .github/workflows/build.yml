@@ -29,5 +29,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: www.tar.gz
-          path: | www.tar.gz
+          name: web-artifacts
+          path: |
+           www.tar.gz
