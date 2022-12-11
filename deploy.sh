@@ -6,7 +6,7 @@ FILE=./www.tar.gz
 exit_code=$1
 
 if [ -f "$FILE" ]; then
-    scp www.tar.gz francesco@raspberry 
+    scp www.tar.gz francesco@192.168.178.148:~/projects/homeHandler_backend/docker/prod
 
     if [ $? -eq 0 ]; then
     echo upload successfully

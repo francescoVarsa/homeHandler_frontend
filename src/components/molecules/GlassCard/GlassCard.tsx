@@ -27,7 +27,7 @@ export function GlassCard({
       >
         <span></span>
         <Box className={styles.content}>
-          <h2>Card One</h2>
+          <h2>Card One Modified</h2>
           <p>
             Lorem ipsum dolor ti amet, consecutor adipisicing elit, sed do
             eiusmod tempor incidunt ut labore et dolore magna aliqua.
