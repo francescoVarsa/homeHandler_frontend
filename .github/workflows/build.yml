@@ -30,8 +30,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: web-artifacts
-          path: |
-            www.tar.gz
+          path: www.tar.gz
 
       - name: Prepare release
         uses: marvinpinto/action-automatic-releases@latest
@@ -40,5 +39,4 @@ jobs:
           automatic_release_tag: latest
           prerelease: true
           title: Development Build
-          files: |
-            www.tar.gz
+          files: www.tar.gz
