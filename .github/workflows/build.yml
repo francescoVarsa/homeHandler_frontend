@@ -33,11 +33,11 @@ jobs:
           path: |
             www.tar.gz
 
-     - name: Prepare release
-       uses: marvinpinto/action-automatic-releases@latest
-       with:
-          automatic_release_tag: latest
-          prerelease: true
-          title: Development Build
-          files: |
-            www.tar.gz
+    #  - name: Prepare release
+    #    uses: marvinpinto/action-automatic-releases@latest
+    #    with:
+    #       automatic_release_tag: latest
+    #       prerelease: true
+    #       title: Development Build
+    #       files: |
+    #         www.tar.gz
