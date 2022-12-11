@@ -25,9 +25,3 @@ jobs:
 
       - name: Compress build
         run: tar -zcvf www.tar.gz build
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: www.tar.gz
-          path: ./www.tar.gz
