@@ -31,14 +31,13 @@ jobs:
         with:
           name: web-artifacts
           path: |
-           www.tar.gz
+            www.tar.gz
 
      - name: Prepare release
        uses: marvinpinto/action-automatic-releases@latest
        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: latest
           prerelease: true
-          title: "Development Build"
+          title: Development Build
           files: |
             www.tar.gz
