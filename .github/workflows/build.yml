@@ -27,7 +27,7 @@ jobs:
         run: tar -zcvf www.tar.gz build
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: web-artifacts
           path: |
