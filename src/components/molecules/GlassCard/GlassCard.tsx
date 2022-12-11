@@ -32,7 +32,7 @@ export function GlassCard({
             Lorem ipsum dolor ti amet, consecutor adipisicing elit, sed do
             eiusmod tempor incidunt ut labore et dolore magna aliqua.
           </p>
-          <a href="#">Read More </a>
+          <a href="/">Read More </a>
           <Box className={styles.card__img__wrapper}>
             {imgType === "gym" && (
               <div className={`${styles.card__img} ${styles.card__img__gym}`} />
