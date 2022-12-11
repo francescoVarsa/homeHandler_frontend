@@ -1,0 +1,33 @@
+name: front-end_build
+run-name: Frontend build run
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the repository
+        uses: actions/checkout@v3
+
+      - name: Set up NodeJS environment
+        uses: actions/setup-node@v3
+
+      - name: Install package dependencies
+        run: npm install
+
+      - name: Create build
+        run: npm run build
+
+      - name: Compress build
+        run: tar -zcvf www.tar.gz build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: www.tar.gz
+          path: .
