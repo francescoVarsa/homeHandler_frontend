@@ -8,6 +8,6 @@
   "feedback-login-success": "Accesso avvenuto con successo",
   "feedback-login-failed": "Accesso fallito credenziali errate",
   "feedback-registration-success": "Registrazione avvenuta con successo",
-  "feedback-registration-failed": "Registrazione avvenuta con successo",
+  "feedback-registration-failed": "Registrazione fallita",
   "forgot-password-label": "Password dimenticata?"
 }

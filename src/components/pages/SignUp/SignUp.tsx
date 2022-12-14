@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { routes } from "../../../config/RoutesMap";
 import { authApi } from "../../../service/api/Auth";
 import BlurredBackground from "../../atoms/backgrouds/BlurredBackground/BlurredBackground";
 import FeedBack from "../../atoms/FeedBack/FeedBack";
@@ -47,10 +48,7 @@ export default function SignUp() {
     }
   };
 
-  const onFeedBackClose = useCallback(
-    () => navigate("/home/dashboard"),
-    [navigate]
-  );
+  const onFeedBackClose = useCallback(() => navigate(routes.start), [navigate]);
 
   return (
     <AuthFormTemplate>
