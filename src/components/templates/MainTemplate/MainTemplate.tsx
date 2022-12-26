@@ -1,11 +1,10 @@
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import Logo from "../../atoms/Logo/Logo";
 import { Menu } from "../../organisms/Menu/Menu";
+import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 
 type MainTemplateProps = {
   children: JSX.Element | JSX.Element[];
@@ -20,13 +19,17 @@ export default function MainTemplate({
 }: MainTemplateProps) {
   const theme = useTheme();
   const menuOptions = [
-    { label: "Home", icon: <HomeRoundedIcon />, linkTo: "/home/start" },
     {
-      label: "Account",
-      icon: <AccountCircleRoundedIcon />,
+      label: "Dashboard",
+      icon: <DashboardCustomizeIcon />,
       linkTo: "/home/start",
     },
-    { label: "Settings", icon: <SettingsRoundedIcon />, linkTo: "/home/start" },
+    // {
+    //   label: "Account",
+    //   icon: <AccountCircleRoundedIcon />,
+    //   linkTo: "/home/start",
+    // },
+    // { label: "Settings", icon: <SettingsRoundedIcon />, linkTo: "/home/start" },
     { label: "Sign out", icon: <LogoutRoundedIcon />, linkTo: "/home/start" },
   ];
 
