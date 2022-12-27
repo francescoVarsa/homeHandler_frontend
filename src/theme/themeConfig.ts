@@ -95,7 +95,6 @@ declare module "@mui/material/CircularProgress" {
     white: true;
   }
 }
-
 declare module "@mui/material/TextField" {
   interface TextFieldPropsColorOverrides {
     darkBlue: true;
@@ -115,6 +114,7 @@ declare module "@mui/material/Paper" {
     neumorphicDarkBlue: true;
     neumorphicDarkViolet: true;
     gradientLight: true;
+    newItem: true;
   }
 }
 
@@ -194,6 +194,21 @@ const configTheme: ThemeOptions = {
             background:
               "linear-gradient(199deg, rgba(90,24,154,1) 11%, rgba(123,44,191,1) 54%, rgba(157,78,221,1) 100%)",
             color: "white",
+          },
+        },
+        {
+          props: { variant: "newItem" },
+          style: {
+            borderRadius: "15px",
+            backgroundColor: "#10002B",
+            border: "1px solid #9D4EDD",
+            color: "#9D4EDD",
+            transition: "0.5s",
+
+            "&:hover": {
+              boxShadow:
+                "0px 0px 8px 5px #9D4EDD, inset 0 0 15px -4px rgb(255 255 255 / 20%)",
+            },
           },
         },
       ],

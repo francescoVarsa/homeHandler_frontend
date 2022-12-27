@@ -6,12 +6,14 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { FoodPlan } from "../components/pages/FoodPlan/FoodPlan";
 import { Home } from "../components/pages/Home/Home";
 import LandingPage from "../components/pages/LandingPage/LandingPage";
 import Login from "../components/pages/Login/Login";
 import NotFound from "../components/pages/NotFound/NotFound";
 import RequestNewPassword from "../components/pages/RequestNewPassword/RequestNewPassword";
 import SignUp from "../components/pages/SignUp/SignUp";
+import MainTemplate from "../components/templates/MainTemplate/MainTemplate";
 import { routes } from "../config/RoutesMap";
 import { store } from "./../redux/store";
 
@@ -25,7 +27,11 @@ const ProtectedRoutes = () => {
     return <Navigate to="/login" />;
   }
 
-  return <Outlet />;
+  return (
+    <MainTemplate hasHeaderLogo={true}>
+      <Outlet />
+    </MainTemplate>
+  );
 };
 
 const AuthFlow = () => {
@@ -38,7 +44,11 @@ const AuthFlow = () => {
     return <Navigate to="/home/start" />;
   }
 
-  return <Outlet />;
+  return (
+    <MainTemplate hasHeaderLogo={true}>
+      <Outlet />
+    </MainTemplate>
+  );
 };
 
 export default function Router() {
@@ -50,6 +60,7 @@ export default function Router() {
     requestResetPassword,
     resetPassword,
     start,
+    foodPlan,
   } = routes;
 
   return (
@@ -67,6 +78,7 @@ export default function Router() {
 
         <Route path={home} element={<ProtectedRoutes />}>
           <Route path={start} element={<Home />} />
+          <Route path={foodPlan} element={<FoodPlan />} />
         </Route>
       </Routes>
     </BrowserRouter>

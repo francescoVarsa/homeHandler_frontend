@@ -1,10 +1,11 @@
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import Logo from "../../atoms/Logo/Logo";
 import { Menu } from "../../organisms/Menu/Menu";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
+import FoodBankIcon from "@mui/icons-material/FoodBank";
+import { useTranslation } from "react-i18next";
 
 type MainTemplateProps = {
   children: JSX.Element | JSX.Element[];
@@ -18,11 +19,18 @@ export default function MainTemplate({
   hasMenu = true,
 }: MainTemplateProps) {
   const theme = useTheme();
+  const { t } = useTranslation();
+
   const menuOptions = [
     {
       label: "Dashboard",
       icon: <DashboardCustomizeIcon />,
       linkTo: "/home/start",
+    },
+    {
+      label: t("menu:foodPlan"),
+      icon: <FoodBankIcon />,
+      linkTo: "/home/foodPlan",
     },
     // {
     //   label: "Account",
