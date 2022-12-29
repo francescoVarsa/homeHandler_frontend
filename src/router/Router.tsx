@@ -44,11 +44,7 @@ const AuthFlow = () => {
     return <Navigate to="/home/start" />;
   }
 
-  return (
-    <MainTemplate hasHeaderLogo={true}>
-      <Outlet />
-    </MainTemplate>
-  );
+  return <Outlet />;
 };
 
 export default function Router() {

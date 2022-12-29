@@ -13,6 +13,8 @@ import * as resetPasswordStepperIT from "./translations/it/PasswordReset/Passwor
 import * as resetPasswordStepperEN from "./translations/en/PasswordReset/PasswordReset-en.json";
 import * as menuIT from "./translations/it/Menu/menu-it.json";
 import * as menuEN from "./translations/en/Menu/menu-en.json";
+import * as homeScreenIT from "./translations/it/HomeScreen/homeScreen-it.json";
+import * as homeScreenEN from "./translations/en/HomeScreen/homeScreen-en.json";
 
 const resources = {
   en: {
@@ -22,6 +24,7 @@ const resources = {
     inputValidation: inputValidationEN,
     resetPassword: resetPasswordStepperEN,
     menu: menuEN,
+    homeScreen: homeScreenEN,
   },
   it: {
     landingPage: landingPageIT,
@@ -30,6 +33,7 @@ const resources = {
     inputValidation: inputValidationIT,
     resetPassword: resetPasswordStepperIT,
     menu: menuIT,
+    homeScreen: homeScreenIT,
   },
 };
 
